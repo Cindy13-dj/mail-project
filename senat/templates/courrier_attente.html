@@ -1,0 +1,356 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+
+
+<style>
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;
+    /*color: gray;*/
+}
+a {
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+    /*color: #2a5555;*/
+    color: #fff;
+}
+a:hover,
+a:focus {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+}
+button {
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+}
+button:hover,
+button:focus {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "Poppins", Arial, sans-serif;
+    color: #000;
+}
+.ftco-section {
+    padding: 7em 0;
+}
+.ftco-no-pt {
+    padding-top: 0;
+}
+.ftco-no-pb {
+    padding-bottom: 0;
+}
+.heading-section {
+    font-size: 28px;
+    color: #000;
+}
+.heading-section small {
+    font-size: 18px;
+}
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.navbar-btn {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+.wrapper {
+    width: 100%;
+}
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    background: #2a5555;
+   /* background: #1d1919;*/
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#sidebar.active {
+    margin-left: -300px;
+}
+#sidebar .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+#sidebar .logo span {
+    display: block;
+}
+#sidebar ul.components {
+    padding: 0;
+}
+#sidebar ul li {
+    font-size: 16px;
+}
+#sidebar ul li > ul {
+    margin-left: 10px;
+}
+#sidebar ul li > ul li {
+    font-size: 14px;
+}
+#sidebar ul li a {
+    padding: 10px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+#sidebar ul li a:hover {
+    /*color: #2a5555;*/
+    color: #fff;
+}
+#sidebar ul li.active > a {
+    background: transparent;
+    color: #2a5555;
+}
+@media (max-width: 991.98px) {
+    #sidebar {
+        margin-left: -300px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+@media (max-width: 991.98px) {
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+/*.btn.btn-primary {
+    background: #2a5555;
+    border-color: #2a5555;
+}
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+    background: #2a5555 !important;
+    border-color: #2a5555 !important;
+}*/
+</style>
+
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a>
+            {% comment %} <p class="text-center">{{ user.username }}</p> {% endcomment %}
+            <p class="text-center"><span style="font-size: 20px">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
+            <ul class="list-unstyled components mb-5 mt-5">
+                <li>
+                    <a href="{% url 'account:index' %}">Deconnexion</a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:chef_service' %}">Enregistrer un Courrier</a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
+                </li>
+                {% comment %} <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li> {% endcomment %}
+            </ul>
+            
+        </div>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 ">
+        {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light"> {% endcomment %}
+            <div class="container-fluid">
+                {% comment %} <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button> {% endcomment %}
+                {% comment %} <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button> {% endcomment %}
+                {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div> {% endcomment %}
+            </div>
+        {% comment %} </nav> {% endcomment %}
+        <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
+
+        
+            
+        
+        
+        
+            <div class="container">
+                <div class="row">
+                    {% for courriers in courrier %}
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        
+                            <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
+                                <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px">
+                                    {% comment %} <h4 class="card-title">Bologna</h4>
+                                    <h6 class="card-subtitle mb-2">Emilia-Romagna Region, Italy</h6>
+                                    <p class="card-text">It is the seventh most populous city in Italy, at the heart of a metropolitan area of about one million people. </p>
+                                    <a href="#" class="card-link text-primary">Book a Trip</a> {% endcomment %}
+                                    <p style="font-size: 20px; font-weight: bold;">
+                                        Code: {{ courriers.code }}
+                                    <p>
+                                    <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
+                                        <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
+                                    </a>
+                                    <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              En cliquant sur OUI vous confirmez avoir traité le courrier
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                              <a style="color: black" href="  ">
+                                                {% comment %} <form method="post"> {% endcomment %}
+                                                <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
+                                              {% comment %} </form> {% endcomment %}
+                                              </a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+     
+
+
+    </div>
+    {% comment %} <div class="" style="margin-top: 15em;">
+        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
+            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
+            <div class="card-body">
+                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
+                    renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
+                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
+                </p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+<script>
+(function ($) {
+    "use strict";
+    var fullHeight = function () {
+        $(".js-fullheight").css("height", $(window).height());
+        $(window).resize(function () {
+            $(".js-fullheight").css("height", $(window).height());
+        });
+    };
+    fullHeight();
+    $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+    });
+})(jQuery);
+</script>
+
+</body>
+</html>

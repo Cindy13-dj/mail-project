@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Connexion pour la gestion du courrier au Sénat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'landing/assets/css/style1.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+    <style>
+        .login-dark form{  
+            background-color:  rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+
+{% comment %} <body style="background: #214a80;"> {% endcomment %}
+<body>
+    
+    <div class="login-dark" style="height: 695px; margin-top: -80px; ">
+        <form action="{% url 'account:user_login' %}" method="POST">
+            <a href="{% url 'account:index' %}">
+                <img src="{% static 'landing/assets/img/sceau.png' %}" style="width: 80px; padding-bottom:50px; margin-left: 30%">
+            </a>
+            {% csrf_token %}
+            {% comment %} <h2 class="sr-only">Login Form</h2>
+            <div class="illustration">
+                <i class="icon ion-ios-locked-outline"></i>
+            </div> {% endcomment %}
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email" required data-error="NEW ERROR MESSAGE">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password" required data-error="NEW ERROR MESSAGE">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" style="background-color: #2a5555; outline: none">Log In</button>
+            </div>
+            <a class="forgot" href="#">Forgot your email or password?</a>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
