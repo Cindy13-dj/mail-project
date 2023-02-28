@@ -206,3 +206,42 @@ def courrier_attente_detail(request, id):
 #     is_active = False
 #     request.object.save()
 #     return redirect('senat:courrier_attente')
+
+
+
+def search_chef(request):
+
+    if request.method == 'POST':
+        query = request.POST.get('code')
+        querys = request.POST.get('types')
+        queryss = request.POST.get('objet')
+
+
+        response = redirect('/result_chef/' + f'?code={query}&types={querys}&objet={queryss}' or f'?code={query}&types={querys}&objet={queryss}' or f'?objet={queryss}')
+        return response
+    else:
+        return render(request, 'search_chef.html')
+
+
+
+def result_chef(request):
+     #compter le nombre de courrier
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
+    type_elt = request.GET.get('types')
+    code = request.GET.get('code')
+    objet = request.GET.get('objet')
+
+
+
+    courrier = Courrier.objects.filter(
+        code=code, types=type_elt
+    ) or Courrier.objects.filter(
+        code=code, types=type_elt, objet=objet
+    )or Courrier.objects.filter(
+        objet=objet
+    )
+
+
+    return render(request,'result_chef.html', {"courrier": courrier, "count_courrier": count_courrier})
