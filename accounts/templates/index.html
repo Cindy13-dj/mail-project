@@ -619,7 +619,7 @@ section {
 }
 
 .about .content ul {
-  list-style: none;
+  /*list-style: none;*/
   padding: 0;
 }
 
@@ -1170,6 +1170,88 @@ section {
     margin: -20px 0 30px 0;
   }
 }
+
+
+
+
+
+
+
+#slideshow {
+  overflow: hidden;
+  height: 510px;
+  width: 1100px;
+  margin: 0 auto;
+}
+ 
+/* Style each of the sides
+with a fixed width and height */
+.slide {
+  float: left;
+  height: 450px;
+  width: 1100px;
+}
+ 
+/* Add animation to the slides */
+.slide-wrapper {
+   
+/* Calculate the total width on the
+  basis of number of slides */
+  width: calc(1100px * 2);
+ 
+/* Specify the animation with the
+  duration and speed */
+  /*animation: slide 2s ease infinite;*/
+  -webkit-animation: slide 2s ease infinite;
+}
+ 
+/* Set the background color
+of each of the slides */
+.slide:nth-child(1) {
+  /*background: green;*/
+}
+ 
+.slide:nth-child(2) {
+  /*background: pink;*/
+}
+ 
+/*.slide:nth-child(3) {
+  background: red;
+}
+ 
+.slide:nth-child(4) {
+  background: yellow;
+}*/
+ 
+/* Define the animation
+for the slideshow */
+@keyframes slide {
+   
+/* Calculate the margin-left for
+  each of the slides */
+  20% {
+    margin-left: 0px;
+  }
+ 
+  50% {
+    margin-left: calc(-1100px * 1);
+  }
+ 
+  /*60% {
+    margin-left: calc(-1100px * 2);
+  }
+ 
+  80% {
+    margin-left: calc(-1100px * 3);
+  }*/
+}
+
+
+
+
+
+
+
 </style>
 
 </head>
@@ -1233,7 +1315,13 @@ section {
     <section id="about" class="about">
       <div class="container">
 
+        
         <div class="row">
+          <div class="section-title">
+            <span>About Senate</span>
+            <h2>About Senate</h2>
+            <!--<p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>-->
+          </div>
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
             <img src="{% static 'landing/assets/img/R.jpeg' %}" class="img-fluid" alt="">
           </div>
@@ -1241,11 +1329,6 @@ section {
             <h3></h3>
             <p class="fst-italic">
             </p>
-            <!--<ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>-->
             <p>
               Le Sénat (Senate) en anglais, est la chambre haute du parlement du Cameroun.
               Il est issu de la révision de la loi n°96/06 du 18 janvier 1996 portant révision de
@@ -1255,6 +1338,59 @@ section {
             </p>
           </div>
         </div>
+
+  
+
+        <!--<div id="slideshow">
+          <div class="slide-wrapper">
+               
+              <div class="slide">
+                  <h1 class="slide-number">
+                    <div class="row">
+                      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+                        <img src="{% static 'landing/assets/img/R.jpeg' %}" class="img-fluid" alt="">
+                      </div>
+                      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+                        <h3></h3>
+                        <p class="fst-italic">
+                        </p>
+                        <p style="font-size: 25px; text-align: justify;">
+                          Le Sénat (Senate) en anglais, est la chambre haute du parlement du Cameroun.
+                          Il est issu de la révision de la loi n°96/06 du 18 janvier 1996 portant révision de
+                          la Constitution du 02 juin 1972, qui prévoit que le parlement est composé de
+                          deux chambres : l’Assemblée Nationale étant la Chambre Basse.
+                          
+                        </p>
+                      </div>
+                    </div>
+                  </h1>
+              </div>
+              <div class="slide">
+                  <h1 class="slide-number">
+                    <div class="row">
+                      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+                        <img src="{% static 'landing/assets/img/hero-bg.jpg' %}" class="img-fluid" alt="">
+                      </div>
+                      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+                        <h3></h3>
+                        <p class="fst-italic">
+                        </p>
+                        <p style="font-size: 25px; text-align: justify;">
+                          Le Sénat (Senate) en anglais, est la chambre haute du parlement du Cameroun.
+                          Il est issu de la révision de la loi n°96/06 du 18 janvier 1996 portant révision de
+                          la Constitution du 02 juin 1972, qui prévoit que le parlement est composé de
+                          deux chambres : l’Assemblée Nationale étant la Chambre Basse.
+                          
+                        </p>
+                      </div>
+                    </div>
+                  </h1>
+              </div>
+          </div>
+      </div>-->
+
+
+
 
       </div>
     </section><!-- End About Section -->
@@ -1268,6 +1404,7 @@ section {
           <div class="col-lg-4" data-aos="fade-up">
             <div class="box">
               <span>01</span>
+              <img src="{% static 'landing/assets/img/CES-yaounde-02.jpg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
               <!--<h4>Lorem Ipsum</h4>
               <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>-->
             </div>
@@ -1276,6 +1413,7 @@ section {
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
             <div class="box">
               <span>02</span>
+              <img src="{% static 'landing/assets/img/assemblee_nationale_vide_1_670.jpg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
               <!--<h4>Repellat Nihil</h4>
               <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>-->
             </div>
@@ -1284,6 +1422,76 @@ section {
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="box">
               <span>03</span>
+              <img src="{% static 'landing/assets/img/sen.jpeg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
+             <!-- <h4> Ad ad velit qui</h4>
+              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>-->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <section id="about" class="about">
+      <div class="container">
+
+    <div class="row">
+      <div class="section-title">
+        <span>About Faculty of Sciences_UY1</span>
+        <h2>About Faculty of Sciences_UY1</h2>
+        <!--<p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>-->
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+        <img src="{% static 'landing/assets/img/IMG.jpg' %}" class="img-fluid" alt="">
+      </div>
+      <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+        <h3></h3>
+        <p class="fst-italic">
+        </p>
+        <p style="">
+          L'université de Yaoundé I (anglais : University of Yaounde I) est un établissement 
+          public à caractère scientifique et culturel doté de la personnalité morale et de 
+          l’autonomie financière. Elle est située dans la ville de Yaoundé, la capitale 
+          politique du Cameroun. <br><br>
+          Née de la réforme de l'enseignement supérieur au Cameroun en 19931, l'université 
+          de Yaoundé I est issue (avec l'université de Yaoundé II) de la scission de 
+          l'université de Yaoundé
+        </p>
+        
+      </div>
+    </div>
+
+    </div>
+    </section><!-- End About Section -->
+
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4" data-aos="fade-up">
+            <div class="box">
+              <span>Faculty of Sciences</span>
+              <img src="{% static 'landing/assets/img/fac.jpeg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
+              <!--<h4>Lorem Ipsum</h4>
+              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>-->
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
+            <div class="box">
+              <span>Rectorate</span>
+              <img src="{% static 'landing/assets/img/rectorat.jpg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
+              <!--<h4>Repellat Nihil</h4>
+              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>-->
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+            <div class="box">
+              <span>Department</span>
+              <img src="{% static 'landing/assets/img/imges.jpeg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
              <!-- <h4> Ad ad velit qui</h4>
               <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>-->
             </div>
@@ -1334,33 +1542,55 @@ section {
       <div class="container">
 
         <div class="section-title">
-          <span>Services</span>
-          <h2>Services</h2>
+          <span>Services of Senate</span>
+          <h2>Services of Senate</h2>
           <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
+              <img src="{% static 'landing/assets/img/senat2.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p style="text-align: justify;">Le Sénat est composé de 100 sénateurs 
+                 renouvelés intégralement tous les cinq ans. 
+                 Chacune des 10 régions du Cameroun 
+                 est représentée par dix sénateurs 
+                 dont sept (07) élus par un collège électoral 
+                 composé des membres des conseils municipaux 
+                 et régionaux, soit 70 sénateurs élus. 
+                 Les trois sénateurs restants de chaque région 
+                 sont nommé par le président, 
+                 soit trente (30) sénateurs</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
+              <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
+              <img src="{% static 'landing/assets/img/senat1.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p style="text-align: justify;">Le Sénat représente les collectivités territoriales 
+                décentralisées (les communes et les régions). 
+                Le Sénat se doit pour mission d'adopter les lois, 
+                d'apporter des amendements ou de rejeter 
+                des textes soumis à son examen</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
+              <img src="{% static 'landing/assets/img/senat0.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <p style="text-align: justify;">Par ailleurs, l’alinéa 2 du paragraphe 4 
+                de l’article 6 de la loi n° 2008/001 du 14 avril 2008 modifiant 
+                et complétant la loi constitutionnelle du 16 janvier 1996 confie 
+                au <b>Président du Sénat la mission d'exercer l'intérim du Président 
+                de la République en cas de vacance de celui-ci pour cause de décès, 
+                de démission ou d’empêchement définitif et ce jusqu’à l’élection 
+                d'un nouveau Président de la République</b></p>
             </div>
           </div>
 
@@ -1395,7 +1625,81 @@ section {
 
     <!-- ======= Cta Section ======= -->
     
-    
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Services of UY1</span>
+          <h2>Services of UY1 </h2>
+          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
+              <img src="{% static 'landing/assets/img/fseg.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="#">Formation</a></h4>
+              <p>il approuve et rend exécutoires les décisions et les délibérations du Conseil
+                d'Administration dans un délai de quinze jours pour compter de la date de
+                réception du courrier. Le silence dans ce délai vaut agrément ;</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bx-file"></i></div>-->
+              <img src="{% static 'landing/assets/img/index.jpeg' %}" class="img-fluid" alt="">
+              <h4><a href="">Education</a></h4>
+              <p>il arrête les programmes d'enseignement, le régime des études et des
+                examens</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bx-tachometer"></i></div>-->
+              <img src="{% static 'landing/assets/img/imag.jpeg' %}" class="img-fluid" alt="">
+              <h4><a href="">Developpement intellecte</a></h4>
+              <p>il assure le contrôle des formations dispensées en son sein,
+              par des missions d'information et d'évaluation et, en cas de nécessité, suscite
+                les missions de contrôle ;</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bx-world"></i></div>-->
+              <img src="{% static 'landing/assets/img/cc.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="">ouissement</a></h4>
+              <p></p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bx-slideshow"></i></div>-->
+              <img src="{% static 'landing/assets/img/u.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="">Epanouissement </a></h4>
+              <p>il arrête les programmes d'enseignement, le régime des études et des
+                examens;</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="750">
+            <div class="icon-box">
+              <!--<div class="icon"><i class="bx bx-arch"></i></div>-->
+              <img src="{% static 'landing/assets/img/c.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="">Divera don</a></h4>
+              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
