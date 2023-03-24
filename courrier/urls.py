@@ -25,5 +25,8 @@ urlpatterns = [
     path('', include('senat.urls')),
     path("", index),
 ]
+
+handler404 = 'accounts.views.error_404_view'
+
 if settings.DEBUG :
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

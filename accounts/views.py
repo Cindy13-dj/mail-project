@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import User
 from tablib import Dataset
 
+from django.conf import settings
+
 
 
 def index(request):
@@ -74,3 +76,9 @@ def user_login(request):
 
     context = {}
     return render(request, 'login.html', context)
+
+def error_404_view(request, exception):
+   
+    # we add the path to the 404.html file
+    # here. The name of our HTML file is 404.html
+    return render(request, '404.html')
