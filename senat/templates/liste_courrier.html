@@ -265,23 +265,69 @@ a[data-toggle="collapse"] {
 
 #content {
     width: 100%;
-    padding-left: 350px;
+    padding-left: 300px;
     transition: all 0.3s;
 }
-/*#content {
-    width: 100%;
-    padding: 0;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}*/
 
+
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+  .section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
 </style>
 
 </head>
 <body>
-
 
     <div class="wrapper">
         <nav id="sidebar">
@@ -307,15 +353,15 @@ a[data-toggle="collapse"] {
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'senat:search_chef' %}">
-                        <i class="fas fa-tasks mr-2"></i>
-                        Recherche d'un Courrier
+                    <a href="{% url 'senat:courrier_attente' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Courrier en attente <span style="font-size:10px; border: 1px solid red; padding-left: 3px; padding-right: 3px; border-radius: %; background-color: red">{{ count_courrier }}</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'senat:list_courrier' %}">
-                        <i class="fas fa-cog mr-2"></i>
-                        Imprimer un Courrier
+                    <a href="{% url 'senat:search_chef' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
                     </a>
                 </li>
             </ul>
@@ -334,49 +380,52 @@ a[data-toggle="collapse"] {
             </nav>
 
             <div class="container-fluid">
-                <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
-                <div class="container">
-                    <div class="row">
-                        {% for courriers in courrier %}
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
-                                    <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px">
-                                        <p style="font-size: 20px; font-weight: bold;">
-                                            Code: {{ courriers.code }}
-                                        <p>
-                                        <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
-                                            <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                En cliquant sur OUI vous confirmez avoir traité le courrier
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                                <a style="color: black" href="  ">
-                                                    <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                                
-                                                </a>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                <div class="section-title">
+                    <span>IMPRIMER UN COURRIER</span>
+                    <h2>IMPRIMER UN COURRIER</h2>
+                  </div>
+                <div class="card card-body">
+                    <form class = "form-inline" method="get">
+                        {%for field in courriers_filter.form %}
+                            <div class="form-group">
+                                <label for="id_{{field.name}}" style="font-weight: bold;">{{field.label}}</label>&nbsp;&nbsp;
+                                {{field}}
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {%endfor%} &nbsp;&nbsp;       
+                        <button class="btn btn-primary" style="width: 80px" type="submit">Filtrer!</button>
+                    </form>
                 </div>
-            </div>
+                <br><br>
+                <div class="container">
+                    {% for courrier in courriers_filter.qs %}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 style="color:Navy;">{{courrier.types}} N°{{courrier.code}}</h5><p style="font-size: 16px">{{courrier.objet}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="df/{{courrier.pk}}" target="_blank" class="btn btn-warning">Imprimer PDF</a>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+                {% comment %} {% if courriers_list.has_other_pages %} {% endcomment %}
+                {% comment %} <nav aria-label="Page navigation conatiner" >
+                    <ul class="pagination pagination" style="justify-content: center;">
+                        {% for page in paginator.page_range %}
+                            {% if page == courrierss.number %}
+                                <li class="page-item active" arria-current="page">
+                                    <span class="page-link">{{page}}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{page}}" class="page-link">{{ page }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav> {% endcomment %}
+            </div>        
         </div>
     </div>
 
@@ -406,10 +455,10 @@ a[data-toggle="collapse"] {
                     <a href="{% url 'senat:chef_service' %}">Enregistrer un Courrier</a>
                 </li>
                 <li>
-                    <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
+                    <a href="{% url 'senat:courrier_attente' %}">Courrier en attente <span style="font-size:10px; border: 1px solid red; padding-left: 3px; padding-right: 3px; border-radius: %; background-color: red">{{ count_courrier }}</span></a>
                 </li>
                 <li>
-                    <a href="{% url 'senat:list_courrier' %}">Imprimer un Courrier </a>
+                    <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
                 </li>
             </ul>
             
@@ -417,72 +466,59 @@ a[data-toggle="collapse"] {
     </nav>
     <div id="content" class="p-4 p-md-5 ">
             <div class="container-fluid">
-        <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
-
+            </div>
+        <h2 class="mb-4 mt-4">IMPRIMER UN COURRIER</h2>
+    
         
-            
+    <div class="card card-body">
+        <form method="get">
+            {{ myFilter.form.as_p }}
+            <button class="btn btn-primary" type="submit">Filtrer</button>
+        </form>
+    </div>
+    <br><br>
         
         
         
             <div class="container">
+                {% for courrier in courriers %}
                 <div class="row">
-                    {% for courriers in courrier %}
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        
-                            <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
-                                <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px">
-                                    <p style="font-size: 20px; font-weight: bold;">
-                                        Code: {{ courriers.code }}
-                                    <p>
-                                    <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
-                                        <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
-                                    </a>
-                                    <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body">
-                                              En cliquant sur OUI vous confirmez avoir traité le courrier
-                                            </div>
-                                            <div class="modal-footer">
-                                              <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                              <a style="color: black" href="  ">
-                                                <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                              
-                                              </a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                        
+                    <div class="col-md-8">
+                        <h5 style="color:Navy;">{{courrier.types}} N°{{courrier.code}}</h5><p style="font-size: 16px">{{courrier.objet}}</p>
                     </div>
-                    {% endfor %}
+                    <div class="col-md-4">
+                        <a href="df/{{courrier.pk}}" target="_blank" class="btn btn-warning">Imprimer PDF</a>
+                    </div>
                 </div>
+                <hr>
+                {% endfor %}
             </div>
+
+            
+
+            
+                <nav aria-label="Page navigation conatiner" >
+                    <ul class="pagination pagination" style="justify-content: center;">
+                        {% for page in paginator.page_range %}
+                            {% if page == courriers.number %}
+                                <li class="page-item active" arria-current="page">
+                                    <span class="page-link">{{page}}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{page}}" class="page-link">{{ page }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+                </div>
      
 
 
-    </div> {% endcomment %}
-    {% comment %} <div class="" style="margin-top: 15em;">
-        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
-            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
-            <div class="card-body">
-                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
-                    renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
-                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
-                </p>
-            </div>
-        </div>
-    </div> {% endcomment %}
-{% comment %} </div>
+    </div>
+    
+</div>
 <script>
 (function ($) {
     "use strict";

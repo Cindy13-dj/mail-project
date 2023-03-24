@@ -14,6 +14,7 @@ urlpatterns = [
     path('bureau_sg/', views.bureau_sg, name='bureau_sg'),
     path('usager/', views.usager, name='usager'),
     path('search/', views.search, name='search'),
+    path('/', views.list_courrier, name='list_courrier'),
     path('courrier_attente/', views.courrier_attente, name='courrier_attente'),
     path('<int:id>', views.courrier_attente_detail, name='courrier_attente_detail'),
     path('search_chef/', views.search_chef, name='search_chef'),

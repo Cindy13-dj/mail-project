@@ -153,7 +153,7 @@
                         <div class="search">
                             {% comment %} {% csrf_token %} {% endcomment %}
                             {% comment %} <input type="text" class="search-input" placeholder="Code..." name="code" value="{{code}}" autofocus> {% endcomment %}
-                            <input type="text" class="search-input" placeholder="Code..." name="code" >
+                            <input type="text" class="search-input"autocomplete="off" placeholder="Code..." name="code" >
                             <button type="submit" id="searchField" class="search-icon"><i class="fa fa-search"></i></button>
                         </div>
                         <select name="types" class="form-control">

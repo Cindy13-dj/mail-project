@@ -13,8 +13,13 @@ import json
 from django.db.models import Q # new
 from django.views.generic import ListView
 from django.urls import reverse
-
-
+import pdfkit
+from django.http import HttpResponse
+from django.template import loader
+import io
+from .utils import render_to_pdf
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .filters import CourrierFilter
 
 
 
@@ -111,8 +116,9 @@ def bureau_sg(request):
     if request.method == 'POST':
         form = MentionForm(request.POST or None, instance=sg)
         if form.is_valid():
+            sg.service_traitement = form.cleaned_data['service_traitement']
             sg.mention = form.cleaned_data['mention']                
-            sg.service_traitement = form.cleaned_data['service_traitement'] 
+            # sg.service_traitement = form.cleaned_data['service_traitement'] 
             sg.save()
             messages.add_message(request, messages.SUCCESS, (f"Informations du courrier enregistrées avec succès."))
             # return redirect('senat:bureau_sg')
@@ -242,6 +248,48 @@ def result_chef(request):
     )or Courrier.objects.filter(
         objet=objet
     )
-
-
     return render(request,'result_chef.html', {"courrier": courrier, "count_courrier": count_courrier})
+
+
+
+def courrier_pdf(request, pk):
+    user_courrier = Courrier.objects.get(pk=pk)
+
+    context = {
+        "user_courrier": user_courrier,
+    }
+    
+    pdf = render_to_pdf('courrier_pdf.html', context)
+    return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+def list_courrier(request):
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
+    courriers = Courrier.objects.all()
+    # courriers = Courrier.objects.filter(is_active=True).order_by('-created_on')
+
+    #pagination
+    # page = request.GET.get('page')
+    # num_of_items = 3
+    # paginator = Paginator(courriers, num_of_items)
+
+    # try:
+    #     courrierss = paginator.page(page)
+    # except PageNotAnInteger:
+    #     page = 1
+    #     courrierss = paginator.page(page)
+    # except EmptyPage:
+    #     page = paginator.num_pages
+    #     courrierss = paginator.page(page)
+
+    #barre de filtre
+    courriers_filter = CourrierFilter(request.GET, queryset=courriers)
+
+    return render(request, 'liste_courrier.html', {'courriers': courriers, 
+                                                   'count_courrier': count_courrier, 
+                                                #    'paginator': paginator,
+                                                   'courriers_filter':courriers_filter,
+                                                   })

@@ -1,8 +1,12 @@
 asgiref==3.6.0
-backports.zoneinfo==0.2.1
+backports.zoneinfo;python_version<"3.9"
 Django==4.1.4
 django-crispy-forms==1.14.0
 shortuuid==1.0.11
 sqlparse==0.4.3
 tablib==3.3.0
 tzdata==2022.7
+pdfkit==1.0.0
+xhtml2pdf==0.2.9
+django_import_export==3.1.0
+django-filter==22.1
