@@ -23,7 +23,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 SECRET_KEY = 'django-insecure-ogi_wqvnjt6=&t#r=1e)h8(p$!opn=n$q^lto3bwhk(mq#@hu@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -139,3 +139,14 @@ AUTH_USER_MODEL = 'accounts.User'
 
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = 'delete' 
 IMPORT_EXPORT_EXPORT_PERMISSION_CODE = 'delete'
+
+
+
+
+# EMAIL CONFIGURATION (for contact form)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'cybex.mail23@gmail.com'
+EMAIL_HOST_PASSWORD = 'cccpyzxqurbjelxx'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -1,3 +1,4 @@
+
 {% extends 'admin/base.html' %}
 
 {% block content %}
@@ -6,8 +7,9 @@
             {{ form.as_p }}
             {% csrf_token %}
 
-            <button type="submit" class="btn btn-success">Importer le fichier CSV</button>
-            {% comment %} <button type="submit">Upload File</button> {% endcomment %}
+                <button type="submit">Upload CSV</button>
         </form>
     </div>
+    <br />
+
 {% endblock %}

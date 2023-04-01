@@ -20,6 +20,23 @@ import io
 from .utils import render_to_pdf
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .filters import CourrierFilter
+from django.core.mail import send_mail
+
+
+
+
+
+
+
+from django.forms import modelform_factory
+# from .models import Picture
+
+from django.core.files.storage import FileSystemStorage
+from .models import WebcamImage
+from django.core.files.base import ContentFile
+from django.utils import timezone
+import re
+from django.http import HttpResponseBadRequest
 
 
 
@@ -293,3 +310,143 @@ def list_courrier(request):
                                                 #    'paginator': paginator,
                                                    'courriers_filter':courriers_filter,
                                                    })
+
+
+
+def envoi_email(request):
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        # phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        form_data = {
+            'name':name,
+            'email':email,
+            # 'phone':phone,
+            'message':message,
+        }
+        recipient_list = email
+        # message = '''
+        # From:\n\t\t{}\n
+        # Message:\n\t\t{}\n
+        # Email:\n\t\t{}\n
+        
+        
+        # '''.format(form_data['name'], form_data['message'], form_data['email'])
+        # send_mail('You got a mail!', message, '', ['ngounouloic853@gmail.com']) # TODO: enter your email address
+        send_mail(name, message, email, [recipient_list])
+        
+
+    return render(request,'envoi_email.html', {"courrier": courrier, "count_courrier": count_courrier})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def inde(request):
+#     return render(request, 'capture/inde.html')
+
+# def capture(request):
+#     return render(request, 'capture/capture.html')
+
+# def save_picture(request):
+#     # Create a Picture form class based on the model
+#     PictureForm = modelform_factory(Picture, fields=('name', 'image'))
+    
+#     if request.method == 'POST':
+#         # Create a form instance with the POST data and files
+#         form = PictureForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             # Save the Picture object to the database
+#             form.save()
+#             # Redirect to the index page
+#             return redirect('senat:inde')
+#     else:
+#         # Render the form for GET requests
+#         form = PictureForm()
+    
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, 'capture/save.html', context)
+
+
+
+# def webcam(request):
+#     if request.method == 'POST' and request.FILES['image']:
+#         image_file = request.FILES['image']
+#         fs = FileSystemStorage()
+#         filename = fs.save('webcam_images/'+image_file.name, image_file)
+#         image_url = fs.url(filename)
+#         WebcamImage.objects.create(image=image_file)
+#         return redirect('webcam')
+#     else:
+#         return render(request, 'webcam.html')
+
+
+# def webcam_capture(request):
+#     if request.method == 'POST':
+#         image_data = request.POST.get('image_data')
+#         if image_data:
+#             # Use regular expression to match image format and data
+#             match = re.search(r'data:image/(?P<format>.*?);base64,(?P<data>.*)', image_data)
+#             if not match:
+#                 return HttpResponseBadRequest('Invalid image data')
+#             # Decode base64-encoded image data
+#             image_data = match.group('data')
+#             image = ContentFile(base64.b64decode(image_data), name='webcam.png')
+#             # Save image to database
+#             webcam_image = WebcamImage(image=image, timestamp=timezone.now())
+#             webcam_image.save()
+#             return redirect('senat:webcam')
+#     return render(request, 'webcam.html')
+
+
+import base64
+import io
+import numpy as np
+import cv2
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .models import WebcamImage
+
+def webcam(request):
+    return render(request, 'webcam.html')
+
+def save_image(request):
+    if request.method == 'POST':
+        imgstr = request.POST.get('image')
+        if imgstr:
+            # Convert base64 string to numpy array
+            nparr = np.fromstring(base64.b64decode(imgstr), np.uint8)
+            # Decode numpy array to image
+            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            # Save image to database
+            image = WebcamImage(image=io.BytesIO(cv2.imencode('.jpg', img)[1]).getvalue())
+            image.save()
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+def webcam_list(request):
+    images = WebcamImage.objects.all().order_by('-timestamp')
+    return render(request, 'webcam_list.html', {'images': images})

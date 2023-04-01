@@ -15,45 +15,55 @@ TYPES_COURRIERS = (
 )
 
 EMETTEUR = (
-    ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
-    ('Direction de l agence comptable du service de la comptabilité matière et du bureau de liaison à l etrnager', 'Direction de l agence comptable du service de la comptabilité matière et du bureau de liaison à l etrnager'),
-    ('Direction de la legislation, du contrôle parlementaire et des services linguistique', 'Direction de la legislation, du contrôle parlementaire et des services linguistique'),
-    ('Direction du budget et de la solde(DBS)', 'Direction du budget et de la solde(DBS)'),
-    ('Direction des relations(DRH)', 'Direction des relations(DRH)'),
-    ('Direction des actions sociales et médicales(DASM)', 'Direction des actions sociales et médicales(DASM)'),
-    ('Direction des servides techniques commun(DSTC)', 'Direction des servides techniques commun(DSTC)'),
-    ('Direction de la documentation, des archives et de la recherche parlementaire(DDARP)', 'Direction de la documentation, des archives et de la recherche parlementaire(DDARP)'),
-    ('Inspecteurs généraux(IG)', 'Inspecteurs généraux(IG)'),
-    ('Direction des relations(DRH)', 'Direction des relations(DRH)'),
-    ('Sécrétaire particulier(SP)', 'Sécrétaire particulier(SP)'),
+    ('Cabinet du président su Sénat(CABPSEN)', 'Cabinet du président su Sénat(CABPSEN)'),
+    ('Sécrétaire Général(SG)', 'Sécrétaire Général(SG)'),
+    ('Sécrétaire Général Adjoint 1(SGA1)', 'Sécrétaire Général Adjoint 1(SGA1)'),
+    ('Sécrétaire Général Adjoint 2(SGA2)', 'Sécrétaire Général Adjoint 2(SGA2)'),
     ('Conseillé technique(CT)', 'Conseillé technique(CT)'),
     ('Chargé de mission(CM)', 'Chargé de mission(CM)'),
-    ('Chargé d études(CE)', 'Chargé d études(CE)'),
-    ('Chargé d études assistante(CE)', 'Chargé d études assistante(CE)'),
+    ('Direction des missions internationales(DMI)', 'Direction des missions internationales(DMI)'),
+    ('Direction des servides techniques commun(DSTC)', 'Direction des servides techniques commun(DSTC)'),
+    ('Direction du budget de la solde(DBS)', 'Direction du budget de la solde(DBS)'),
+    ('Direction agence comptable(AC)', 'Direction agence comptable(AC)'),
+    ('Direction des actions sociales et médicales(DASM)', 'Direction des actions sociales et médicales(DASM)'),
+    ("Direction de la traduction de l'interpretation(DTI)", "Direction de la traduction de l'interpretation(DTI)"),
+    ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
+    ('Direction de la collectivité territorial décentralisées(DCTD)', 'Direction de la collectivité territorial décentralisées(DCTD)'),
+    ('Direction des ressources humaines(DRH)', 'Direction des ressources humaines(DRH)'),
+    ('Sercice du doyen', 'Sercice du doyen'),
+    ('Sercice de la scolarité', 'Sercice de la scolarité'),
+    ('Chef de département', 'Chef de département'),
+    ('Sercice des questeurs', 'Sercice des questeurs'),
+    ('AUTRES...', 'AUTRES...'),
 )
 
 SERVICE_TRAITEMENT = (
-    ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
-    ('Direction de l agence comptable du service de la comptabilité matière et du bureau de liaison à l etrnager', 'Direction de l agence comptable du service de la comptabilité matière et du bureau de liaison à l etrnager'),
-    ('Direction de la legislation, du contrôle parlementaire et des services linguistique', 'Direction de la legislation, du contrôle parlementaire et des services linguistique'),
-    ('Direction du budget et de la solde(DBS)', 'Direction du budget et de la solde(DBS)'),
-    ('Direction des relations(DRH)', 'Direction des relations(DRH)'),
-    ('Direction des actions sociales et médicales(DASM)', 'Direction des actions sociales et médicales(DASM)'),
-    ('Direction des servides techniques commun(DSTC)', 'Direction des servides techniques commun(DSTC)'),
-    ('Direction de la documentation, des archives et de la recherche parlementaire(DDARP)', 'Direction de la documentation, des archives et de la recherche parlementaire(DDARP)'),
-    ('Inspecteurs généraux(IG)', 'Inspecteurs généraux(IG)'),
-    ('Direction des relations(DRH)', 'Direction des relations(DRH)'),
-    ('Sécrétaire particulier(SP)', 'Sécrétaire particulier(SP)'),
+    ('Cabinet du président su Sénat(CABPSEN)', 'Cabinet du président su Sénat(CABPSEN)'),
+    ('Sécrétaire Général(SG)', 'Sécrétaire Général(SG)'),
+    ('Sécrétaire Général Adjoint 1(SGA1)', 'Sécrétaire Général Adjoint 1(SGA1)'),
+    ('Sécrétaire Général Adjoint 2(SGA2)', 'Sécrétaire Général Adjoint 2(SGA2)'),
     ('Conseillé technique(CT)', 'Conseillé technique(CT)'),
     ('Chargé de mission(CM)', 'Chargé de mission(CM)'),
-    ('Chargé d études(CE)', 'Chargé d études(CE)'),
-    ('Chargé d études assistante(CE)', 'Chargé d études assistante(CE)'),
+    ('Direction des missions internationales(DMI)', 'Direction des missions internationales(DMI)'),
+    ('Direction des servides techniques commun(DSTC)', 'Direction des servides techniques commun(DSTC)'),
+    ('Direction du budget de la solde(DBS)', 'Direction du budget de la solde(DBS)'),
+    ('Direction agence comptable(AC)', 'Direction agence comptable(AC)'),
+    ('Direction des actions sociales et médicales(DASM)', 'Direction des actions sociales et médicales(DASM)'),
+    ("Direction de la traduction de l'interpretation(DTI)", "Direction de la traduction de l'interpretation(DTI)"),
+    ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
+    ('Direction de la collectivité territorial décentralisées(DCTD)', 'Direction de la collectivité territorial décentralisées(DCTD)'),
+    ('Direction des ressources humaines(DRH)', 'Direction des ressources humaines(DRH)'),
+    ('Sercice du doyen', 'Sercice du doyen'),
+    ('Sercice de la scolarité', 'Sercice de la scolarité'),
+    ('Chef de département', 'Chef de département'),
+    ('Sercice des questeurs', 'Sercice des questeurs'),
 )
 
 RECEPTEUR = (
     ('CABINET DU PRESIDENT DU SENAT', 'CABINET DU PRESIDENT DU SENAT'),
     ('SECRETARIAT GENERAL', 'SECRETARIAT GENERAL'),
-    ('DECANT', 'DECANT'),
+    ('DECANAT', 'DECANAT'),
+    ('Sercice des questeurs', 'Sercice des questeurs'),
 )
 
 STRUCTURE = (
@@ -84,9 +94,35 @@ class Courrier(models.Model):
     mention = models.CharField(max_length=100, choices=MENTION, null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.transmetteur}'
 
     class Meta:
         db_table = "courrier"
+
+
+
+
+
+
+
+
+
+
+
+# class Picture(models.Model):
+#     name = models.CharField(max_length=255)
+#     image = models.ImageField(upload_to='pictures')
+
+#     def __str__(self):
+#         return self.name
+
+# class WebcamImage(models.Model):
+#     image = models.ImageField(upload_to='webcam_images/', blank=True, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+class WebcamImage(models.Model):
+    image = models.ImageField(upload_to='webcam/')
+    timestamp = models.DateTimeField(auto_now_add=True)

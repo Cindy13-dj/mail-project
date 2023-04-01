@@ -1,6 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 
 
 
@@ -364,6 +364,12 @@ a[data-toggle="collapse"] {
                         Recherche d'un Courrier
                     </a>
                 </li>
+                <li>
+                    <a href="{% url 'senat:envoi_email' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Email
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -383,7 +389,7 @@ a[data-toggle="collapse"] {
                 <div class="section-title">
                     <span>IMPRIMER UN COURRIER</span>
                     <h2>IMPRIMER UN COURRIER</h2>
-                  </div>
+                </div>
                 <div class="card card-body">
                     <form class = "form-inline" method="get">
                         {%for field in courriers_filter.form %}
@@ -397,8 +403,8 @@ a[data-toggle="collapse"] {
                 </div>
                 <br><br>
                 <div class="container">
-                    {% for courrier in courriers_filter.qs %}
-                        <div class="row">
+                    {% comment %} {% for courrier in courriers_filter.qs %} {% endcomment %}
+                        {% comment %} <div class="row">
                             <div class="col-md-8">
                                 <h5 style="color:Navy;">{{courrier.types}} N°{{courrier.code}}</h5><p style="font-size: 16px">{{courrier.objet}}</p>
                             </div>
@@ -406,8 +412,30 @@ a[data-toggle="collapse"] {
                                 <a href="df/{{courrier.pk}}" target="_blank" class="btn btn-warning">Imprimer PDF</a>
                             </div>
                         </div>
-                        <hr>
-                    {% endfor %}
+                        <hr> {% endcomment %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-primary" scope="col">Type</th>
+                                    <th class="text-primary" scope="col">Code</th>
+                                    <th class="text-primary" scope="col">Objet</th>
+                                    <th class="text-primary" scope="col">Date</th>
+                                </tr>
+                            </thead>
+                            {% for courrier in courriers_filter.qs %}
+                                <tbody>
+                                    <tr>
+                                        <td class="text-success" style="font-weight: bold">{{courrier.types}}</td>
+                                        <td class="text-danger" style="font-weight: bold">N°{{courrier.code}}</td>
+                                        <td class="text-info" style="font-weight: bold">{{courrier.objet}}</td>
+                                        {%language 'fr' %}
+                                            <td class="text-warning" style="font-weight: bold">{{courrier.created_at}}</td>
+                                        {% endlanguage %}
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    {% comment %} {% endfor %} {% endcomment %}
                 </div>
                 {% comment %} {% if courriers_list.has_other_pages %} {% endcomment %}
                 {% comment %} <nav aria-label="Page navigation conatiner" >

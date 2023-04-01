@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Saved Webcam Images</title>
+  </head>
+  <body>
+    <h1>Saved Webcam Images</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for image in images %}
+        <tr>
+          <td><img src="{{ image.image.url }}"></td>
+          <td>{{ image.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

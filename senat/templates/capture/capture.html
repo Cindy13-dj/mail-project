@@ -1,0 +1,44 @@
+<p>Please allow camera access and capture an image:</p>
+<div class="camera">
+  <video id="video">Video stream not available.</video>
+  <br>
+  <button id="startbutton">Take picture</button>
+</div>
+<form id="save-form" action="{% url 'senat:save_picture' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="name" value="" id="save-name"/>
+    <input type="hidden" name="image" value="" id="save-image"/>
+</form>
+<canvas id="canvas"></canvas>
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const startbutton = document.getElementById('startbutton');
+    const saveform = document.getElementById('save-form');
+    const savename = document.getElementById('save-name');
+    const saveimage = document.getElementById('save-image');
+    const constraints = {
+    video: true
+    };
+
+    // Attach the video stream to the video element
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    })
+    .catch(function(err) {
+        console.log('An error occurred: ' + err);
+    });
+
+    // Take a picture when the user clicks the button
+    startbutton.addEventListener('click', function(event) {
+    event.preventDefault();
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    savename.value = 'My Picture';
+    saveimage.value = canvas.toDataURL('Images/jpeg');
+    saveform.submit();
+    });
+</script>
