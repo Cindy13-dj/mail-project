@@ -2,7 +2,11 @@
 {% load static %}
 {% block content %}
 
-<a href="upload-csv/">Upload a csv file</a>
+{% comment %} <a href="upload-csv/">Upload a csv file</a> {% endcomment %}
+
+<div class="row" style="align: right">
+    <a href="upload-csv/" class="btn btn-success">Ajouter les utilisateurs</a>
+</div>
 
 {{ block.super }}
 {% endblock %}

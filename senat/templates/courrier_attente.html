@@ -21,19 +21,19 @@
 
 
 <style>
-body {
+/*body {
     font-family: "Poppins", Arial, sans-serif;
     font-size: 14px;
     line-height: 1.8;
     font-weight: normal;
     background: #fafafa;
-    /*color: gray;*/
+  
 }
 a {
     -webkit-transition: 0.3s all ease;
     -o-transition: 0.3s all ease;
     transition: 0.3s all ease;
-    /*color: #2a5555;*/
+  
     color: #fff;
 }
 a:hover,
@@ -120,7 +120,7 @@ h5,
     min-width: 300px;
     max-width: 300px;
     background: #2a5555;
-   /* background: #1d1919;*/
+ 
     color: #fff;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -157,7 +157,7 @@ h5,
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 #sidebar ul li a:hover {
-    /*color: #2a5555;*/
+   
     color: #fff;
 }
 #sidebar ul li.active > a {
@@ -197,7 +197,7 @@ a[data-toggle="collapse"] {
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-/*.btn.btn-primary {
+.btn.btn-primary {
     background: #2a5555;
     border-color: #2a5555;
 }
@@ -206,15 +206,215 @@ a[data-toggle="collapse"] {
     background: #2a5555 !important;
     border-color: #2a5555 !important;
 }*/
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2a5555; 
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    /*background-color: #2a5555;*/
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    background-color: #0B7474;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding-left: 350px;
+    transition: all 0.3s;
+}
+/*#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}*/
+
 </style>
 
 </head>
 <body>
-<div class="wrapper d-flex align-items-stretch">
+
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                <h5>Cybex Courrier</h5>
+            </div>
+            {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
+            <div class="text-center">
+                <img src="{% static 'landing/assets/img/n.jpeg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+            </div>
+            <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'account:index' %}">
+                        <i class="ri-logout-circle-line"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:chef_service' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search_chef' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:list_courrier' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Listing des Courriers
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:envoi_email' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
+                <div class="container">
+                    <div class="row">
+                        {% for courriers in courrier %}
+                            <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                                <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
+                                    <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px;">
+                                        <p style="font-size: 20px; font-weight: bold;">
+                                            Code: {{ courriers.code }}
+                                        <p>
+                                        <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
+                                            <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
+                                        </a>
+                                        <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                En cliquant sur OUI vous confirmez avoir traité le courrier
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                <a style="color: black" href="  ">
+                                                    <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
+                                                
+                                                </a>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
         <div class="p-4 pt-5">
             <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a>
-            {% comment %} <p class="text-center">{{ user.username }}</p> {% endcomment %}
+            
             <p class="text-center"><span style="font-size: 20px">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components mb-5 mt-5">
                 <li>
@@ -226,45 +426,15 @@ a[data-toggle="collapse"] {
                 <li>
                     <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
                 </li>
-                {% comment %} <li>
-                    <a href="#">Portfolio</a>
-                </li>
                 <li>
-                    <a href="#">Contact</a>
-                </li> {% endcomment %}
+                    <a href="{% url 'senat:list_courrier' %}">Imprimer un Courrier </a>
+                </li>
             </ul>
             
         </div>
     </nav>
-    <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 ">
-        {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light"> {% endcomment %}
             <div class="container-fluid">
-                {% comment %} <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                    <i class="fa fa-bars"></i>
-                    <span class="sr-only">Toggle Menu</span>
-                </button> {% endcomment %}
-                {% comment %} <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button> {% endcomment %}
-                {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div> {% endcomment %}
-            </div>
-        {% comment %} </nav> {% endcomment %}
         <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
 
         
@@ -279,10 +449,6 @@ a[data-toggle="collapse"] {
                         
                             <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
                                 <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px">
-                                    {% comment %} <h4 class="card-title">Bologna</h4>
-                                    <h6 class="card-subtitle mb-2">Emilia-Romagna Region, Italy</h6>
-                                    <p class="card-text">It is the seventh most populous city in Italy, at the heart of a metropolitan area of about one million people. </p>
-                                    <a href="#" class="card-link text-primary">Book a Trip</a> {% endcomment %}
                                     <p style="font-size: 20px; font-weight: bold;">
                                         Code: {{ courriers.code }}
                                     <p>
@@ -305,9 +471,8 @@ a[data-toggle="collapse"] {
                                             <div class="modal-footer">
                                               <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
                                               <a style="color: black" href="  ">
-                                                {% comment %} <form method="post"> {% endcomment %}
                                                 <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                              {% comment %} </form> {% endcomment %}
+                                              
                                               </a>
                                             </div>
                                           </div>
@@ -323,7 +488,7 @@ a[data-toggle="collapse"] {
      
 
 
-    </div>
+    </div> {% endcomment %}
     {% comment %} <div class="" style="margin-top: 15em;">
         <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
             <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
@@ -335,7 +500,7 @@ a[data-toggle="collapse"] {
             </div>
         </div>
     </div> {% endcomment %}
-</div>
+{% comment %} </div>
 <script>
 (function ($) {
     "use strict";
@@ -350,7 +515,7 @@ a[data-toggle="collapse"] {
         $("#sidebar").toggleClass("active");
     });
 })(jQuery);
-</script>
+</script> {% endcomment %}
 
 </body>
 </html>

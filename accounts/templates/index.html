@@ -54,6 +54,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+
 }
 
 a {
@@ -337,7 +338,7 @@ h6 {
   opacity: 1;
   top: 100%;
   visibility: visible;
-}
+}http://127.0.0.1:8000/
 
 .navbar .dropdown .dropdown ul {
   top: 0;
@@ -787,7 +788,8 @@ section {
 }
 
 .services .icon-box:hover h4 a,
-.services .icon-box:hover p {
+.services .icon-box:hover p,
+.services .icon-box:hover ul li {
   color: #fff;
 }
 
@@ -1333,7 +1335,30 @@ for the slideshow */
               Le Sénat (Senate) en anglais, est la chambre haute du parlement du Cameroun.
               Il est issu de la révision de la loi n°96/06 du 18 janvier 1996 portant révision de
               la Constitution du 02 juin 1972, qui prévoit que le parlement est composé de
-              deux chambres : l’Assemblée Nationale étant la Chambre Basse.
+              deux chambres : l’Assemblée Nationale étant la Chambre Basse.<br><br> 
+              Le Sénat est composé de 100 sénateurs 
+              renouvelés intégralement tous les cinq ans. 
+              Chacune des 10 régions du Cameroun 
+              est représentée par dix sénateurs 
+              dont sept (07) élus par un collège électoral 
+              composé des membres des conseils municipaux 
+              et régionaux, soit 70 sénateurs élus. 
+              Les trois sénateurs restants de chaque région 
+              sont nommé par le président, 
+              soit trente (30) sénateurs.<br><br>
+              Le Sénat représente les collectivités territoriales 
+                décentralisées (les communes et les régions). 
+                Le Sénat se doit pour mission d'adopter les lois, 
+                d'apporter des amendements ou de rejeter 
+                des textes soumis à son examen.<br><br>
+                Par ailleurs, l’alinéa 2 du paragraphe 4 
+                de l’article 6 de la loi n° 2008/001 du 14 avril 2008 modifiant 
+                et complétant la loi constitutionnelle du 16 janvier 1996 confie 
+                au <b>Président du Sénat la mission d'exercer l'intérim du Président 
+                de la République en cas de vacance de celui-ci pour cause de décès, 
+                de démission ou d’empêchement définitif et ce jusqu’à l’élection 
+                d'un nouveau Président de la République</b></p>
+            
               
             </p>
           </div>
@@ -1403,7 +1428,7 @@ for the slideshow */
 
           <div class="col-lg-4" data-aos="fade-up">
             <div class="box">
-              <span>01</span>
+              <span>Siege social</span>
               <img src="{% static 'landing/assets/img/CES-yaounde-02.jpg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
               <!--<h4>Lorem Ipsum</h4>
               <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>-->
@@ -1412,7 +1437,7 @@ for the slideshow */
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
             <div class="box">
-              <span>02</span>
+              <span>Salle du parlement</span>
               <img src="{% static 'landing/assets/img/assemblee_nationale_vide_1_670.jpg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
               <!--<h4>Repellat Nihil</h4>
               <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>-->
@@ -1421,7 +1446,7 @@ for the slideshow */
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="box">
-              <span>03</span>
+              <span>Session parlement</span>
               <img src="{% static 'landing/assets/img/sen.jpeg' %}" style="width: 500px; height: 165px;" class="img-fluid" alt="">
              <!-- <h4> Ad ad velit qui</h4>
               <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>-->
@@ -1544,57 +1569,62 @@ for the slideshow */
         <div class="section-title">
           <span>Services of Senate</span>
           <h2>Services of Senate</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <p></p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
-              <img src="{% static 'landing/assets/img/senat2.jpg' %}" class="img-fluid" alt="">
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p style="text-align: justify;">Le Sénat est composé de 100 sénateurs 
-                 renouvelés intégralement tous les cinq ans. 
-                 Chacune des 10 régions du Cameroun 
-                 est représentée par dix sénateurs 
-                 dont sept (07) élus par un collège électoral 
-                 composé des membres des conseils municipaux 
-                 et régionaux, soit 70 sénateurs élus. 
-                 Les trois sénateurs restants de chaque région 
-                 sont nommé par le président, 
-                 soit trente (30) sénateurs</p>
+              <img src="{% static 'landing/assets/img/senat0.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="">CABINET DU PRESIDENT DU SENAT</a></h4>
+              <p style="text-align: justify;">Au debut de la legislation ou de la premiere session
+              ordinaire de l'annee legislative, il est proceder avant toute deliberation et sous 
+            reserve des dispositions de l'article 6, a l'election du bureau definitif du senat.<br>
+          Le president du senat est elu au scrutin uninominal a la majorite absolue des suffrages
+        valablement exprime. A defaut de la majorite absolue au premier tour, il est proceder a un
+           second tour pour lequel la majorite relative suffit pour etre declarer elu. </p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
-              <img src="{% static 'landing/assets/img/senat1.jpg' %}" class="img-fluid" alt="">
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p style="text-align: justify;">Le Sénat représente les collectivités territoriales 
-                décentralisées (les communes et les régions). 
-                Le Sénat se doit pour mission d'adopter les lois, 
-                d'apporter des amendements ou de rejeter 
-                des textes soumis à son examen</p>
+              <img src="{% static 'landing/assets/img/mevaa.jpg' %}" class="img-fluid" alt="">
+              <h4><a href="">CABINET DU SECRETARIAT GENERAL </a></h4>
+              <p style="text-align: justify;">Sous la responsabilite et l'autorite hierarchique 
+              du secretaire General, conseiller juridique et parlementaire du senat le secretariat
+             General assiste le bureau, le president du senat et les senateurs dans l'accomplissement
+            de leurs missions.<br>Le secretaire General du senat est assister de deux (02)secretaires
+          Generaux adjoints ayant un rang et prerogative de secretaire du bureau.</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
-              <img src="{% static 'landing/assets/img/senat0.jpg' %}" class="img-fluid" alt="">
-              <h4><a href="">Magni Dolores</a></h4>
-              <p style="text-align: justify;">Par ailleurs, l’alinéa 2 du paragraphe 4 
-                de l’article 6 de la loi n° 2008/001 du 14 avril 2008 modifiant 
-                et complétant la loi constitutionnelle du 16 janvier 1996 confie 
-                au <b>Président du Sénat la mission d'exercer l'intérim du Président 
-                de la République en cas de vacance de celui-ci pour cause de décès, 
-                de démission ou d’empêchement définitif et ce jusqu’à l’élection 
-                d'un nouveau Président de la République</b></p>
+              <img src="{% static 'landing/assets/img/senat1.jpg' %}" style="width: 500px; height: 150px;" class="img-fluid" alt="">
+              <h4><a href="">SERVICE DU COURRIER DU SENAT </a></h4>
+              <p style="text-align: justify;">Rattacher a <b>la Direction de Coordination</b>, le 
+              service du courrier du senat est sous l'autorite d'un chef service assister d'un chef
+            de service adjoint. Il est charger:
+          <ul style="text-align: justify; font-size: 15px;">
+            <li>
+              de la reception,de l'enregistrement et de la ventilation du courrier non confidetiel
+              a l'arrivee ou au depart; 
+            </li>
+            <li>
+              de l'enregistrement et de la conservation des actes administratifs du bureau,
+              du president et du secretaire General;
+            </li>
+            <li>
+              de la conservation des cachets officiels.
+            </li>
+          </ul></b></p>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
+          <!--<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-world"></i></div>
               <h4><a href="">Nemo Enim</a></h4>
@@ -1616,7 +1646,7 @@ for the slideshow */
               <h4><a href="">Divera don</a></h4>
               <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
             </div>
-          </div>
+          </div>-->
 
         </div>
 
@@ -1631,27 +1661,39 @@ for the slideshow */
         <div class="section-title">
           <span>Services of UY1</span>
           <h2>Services of UY1 </h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <p>DECANAT</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bxl-dribbble"></i></div>-->
-              <img src="{% static 'landing/assets/img/fseg.jpg' %}" class="img-fluid" alt="">
-              <h4><a href="#">Formation</a></h4>
-              <p>il approuve et rend exécutoires les décisions et les délibérations du Conseil
-                d'Administration dans un délai de quinze jours pour compter de la date de
-                réception du courrier. Le silence dans ce délai vaut agrément ;</p>
+              <img src="{% static 'landing/assets/img/fseg.jpg' %}" style="width: 500px; height: 150px;"class="img-fluid" alt="">
+              <h4><a href="#">DOYEN DE LA FACULTE DES SCIENCES</a></h4>
+              <p style="text-align: justify;">le Doyen qui en assure la direction et la coordination de l’ensemble des Services: 
+                une Assemblée de Faculté, un Conseil de Faculté et des Services administratifs.<br>
+                Le Doyen est assisté de trois vice-doyens :
+                <ul style="text-align: justify; font-size: 15px;">
+                    <li> 
+                      vice-doyen chargé de la Programmation et du Suivi des Activités Académiques;
+                    </li>
+                    <li>
+                      un vice-doyen chargé de la Scolarité, des Statistiques et du Suivi des Etudiants;
+                    </li>
+                    <li>
+                       un vice-doyen chargé de la Recherche et de la Coopération.
+                    </li>
+                  </ul>
+                </p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bx-file"></i></div>-->
-              <img src="{% static 'landing/assets/img/index.jpeg' %}" class="img-fluid" alt="">
-              <h4><a href="">Education</a></h4>
-              <p>il arrête les programmes d'enseignement, le régime des études et des
+              <img src="{% static 'landing/assets/img/index.jpeg' %}"style="width: 500px; height: 150px;"class="img-fluid" alt="">
+              <h4><a href="">SECRETARIAT DU DOYEN </a></h4>
+              <p style="text-align: justify;">il arrête les programmes d'enseignement, le régime des études et des
                 examens</p>
             </div>
           </div>
@@ -1659,17 +1701,17 @@ for the slideshow */
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <!--<div class="icon"><i class="bx bx-tachometer"></i></div>-->
-              <img src="{% static 'landing/assets/img/imag.jpeg' %}" class="img-fluid" alt="">
-              <h4><a href="">Developpement intellecte</a></h4>
-              <p>il assure le contrôle des formations dispensées en son sein,
-              par des missions d'information et d'évaluation et, en cas de nécessité, suscite
+              <img src="{% static 'landing/assets/img/cc.jpg' %}" style="width: 500px; height: 150px;"class="img-fluid" alt="">
+              <h4><a href="">SERVICE DU COURRIER</a></h4>
+              <p style="text-align: justify;"> il assure le contrôle des formations dispensées en son sein,
+              par des mission s d'information et d'évaluation et, en cas de nécessité, suscite
                 les missions de contrôle ;</p>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
+          <!--<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
             <div class="icon-box">
-              <!--<div class="icon"><i class="bx bx-world"></i></div>-->
+              
               <img src="{% static 'landing/assets/img/cc.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">ouissement</a></h4>
               <p></p>
@@ -1678,7 +1720,7 @@ for the slideshow */
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="600">
             <div class="icon-box">
-              <!--<div class="icon"><i class="bx bx-slideshow"></i></div>-->
+              
               <img src="{% static 'landing/assets/img/u.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">Epanouissement </a></h4>
               <p>il arrête les programmes d'enseignement, le régime des études et des
@@ -1688,14 +1730,14 @@ for the slideshow */
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="750">
             <div class="icon-box">
-              <!--<div class="icon"><i class="bx bx-arch"></i></div>-->
+              
               <img src="{% static 'landing/assets/img/c.jpg' %}" class="img-fluid" alt="">
               <h4><a href="">Divera don</a></h4>
               <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
             </div>
           </div>
 
-        </div>
+        </div>-->
 
       </div>
     </section><!-- End Services Section -->
@@ -1706,18 +1748,18 @@ for the slideshow */
       <div class="container">
 
         <div class="section-title">
-          <span>Team</span>
-          <h2>Team</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+            
+          <h2>Team of Senate</h2>
+          <span>Les personnalites de la Republique</span>
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="margin-top: 80px" data-aos="zoom-in">
             <div class="member">
-              <img src="{% static 'landing/assets/img/R.jpeg' %}"
+              <img src="{% static 'landing/assets/img/Senator Marcel Niat Njifendji.jpg' %}">
              
               <h4>Marcel Niat Njifendji</h4>
-              <span>Senator</span>
+              <span>President du Senat</span>
               <p>
               </p>
               <div class="social">
@@ -1731,11 +1773,71 @@ for the slideshow */
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="{% static 'landing/assets/img/image.jpg' %}"
-              <h4>who</h4>
-              <span>Product Manager</span>
+              <img src="{% static 'landing/assets/img/image.jpg' %}" style="height: 190px;">
+             
+              <h4>Son Excellence Paul BIYA</h4>
+              <span>President de la Republique</span>
               <p>
-                President of the replublic of Cameroon
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="margin-top: 80px" data-aos="zoom-in">
+            <div class="member">
+              <img src="{% static 'landing/assets/img/mevaas.jpg' %}">
+             
+              <h4>Michel MEVAA MEBOUTOU</h4>
+              <span>Secretire General du Senat</span>
+              <p>
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="container" style="margin-top: 100px;">
+
+        <div class="section-title">
+            
+          <h2>Team of University</h2>
+          <span>Les personnalites de la Republique</span>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="margin-top: 80px" data-aos="zoom-in">
+            <div class="member">
+              <img src="{% static 'landing/assets/img/doyen.jpg' %}">
+             
+              <h4>Marcel Niat Njifendji</h4>
+              <span>Doyen de la faculte de science de l'universite de Yaoundé 1</span>
+              <p>
               </p>
               <div class="social">
                 <a href=""><i class="bi bi-twitter"></i></a>
@@ -1748,11 +1850,28 @@ for the slideshow */
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="assets/img/team/team-3.jpg" alt="">
-              <h4>who</h4>
-              <span>CTO</span>
+              <img src="{% static 'landing/assets/img/recteur.jpg' %}" >
+             
+              <h4>Pr Maurice Aurelien SOSSO</h4>
+              <span>RECTEUR DE L'UNIVERSITE DE YAOUNDE 1</span>
               <p>
-                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" style="margin-top: 80px" data-aos="zoom-in">
+            <div class="member">
+              <img src="{% static 'landing/assets/img/departement.jpg' %}" style="width: 800px;">
+             
+              <h4>Dr Alidou Haminou</h4>
+              <span>chef du Departement d'Informatique</span>
+              <p>
               </p>
               <div class="social">
                 <a href=""><i class="bi bi-twitter"></i></a>
@@ -1783,7 +1902,7 @@ for the slideshow */
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
               <h3>Notre Adresse</h3>
-              <p>XXXXX XXXXX XXXXX XXXXX XXXXX</p>
+              <p>Yaoundé-Cameroun</p>
             </div>
           </div>
 

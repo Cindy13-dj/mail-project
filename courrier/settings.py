@@ -29,14 +29,7 @@ SECRET_KEY = 'django-insecure-ogi_wqvnjt6=&t#r=1e)h8(p$!opn=n$q^lto3bwhk(mq#@hu@
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-#stactic file added!
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(   
-        os.path.dirname(__file__),
-        'static',
-    ),
-)
+
 
 # Application definition
 
@@ -51,6 +44,8 @@ INSTALLED_APPS = [
     'accounts',
     'senat',
     'crispy_forms',
+    'import_export',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +142,21 @@ AUTH_USER_MODEL = 'accounts.User'
 
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = 'delete' 
 IMPORT_EXPORT_EXPORT_PERMISSION_CODE = 'delete'
+
+
+
+
+# EMAIL CONFIGURATION (for contact form)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'cybex.mail23@gmail.com'
+# EMAIL_HOST_PASSWORD = 'cccpyzxqurbjelxx'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'cybex.courrier@gmail.com'
+EMAIL_HOST_PASSWORD = 'qnurywhrrdejrsqo'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
