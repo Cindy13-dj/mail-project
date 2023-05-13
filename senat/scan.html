@@ -1,0 +1,187 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+<link rel="stylesheet" href="{% static 'senat/css/remix-icons.css' %}">
+
+<style>
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2a5555; 
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    /*background-color: #2a5555;*/
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    background-color: #0B7474;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding-left: 350px;
+    transition: all 0.3s;
+}
+
+
+.alert-error{
+    list-style : none;
+    background-color: red;
+    display: none;
+}
+.help-block strong{
+    display: none;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                <h5>Cybex Courrier</h5>
+            </div>
+            <div class="text-center">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+            </div>
+            <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'account:index' %}">
+                        <i class="ri-logout-circle-line"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:courrier_attente' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Courrier en attente <span style="font-size:10px; border: 1px solid red; padding-left: 3px; padding-right: 3px; border-radius: %; background-color: red">{{ count_courrier }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search_chef' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:list_courrier' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Listing des Courriers
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:envoi_email' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <h2 class="mb-4 mt-4">SCANNER DU COURRIER</h2>
+                <div class="row">
+                    <div class="col-md-9">
+                        {% include '_partials/messages.html' %}
+                        <div class="form-group">
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <button type="submit" id="" class="btn btn-primary mt-4"> Enregistrer!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

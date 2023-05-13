@@ -21,6 +21,8 @@ from .utils import render_to_pdf
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .filters import CourrierFilter
 from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import DetailView
 
 
 
@@ -32,7 +34,7 @@ from django.forms import modelform_factory
 # from .models import Picture
 
 from django.core.files.storage import FileSystemStorage
-from .models import WebcamImage
+# from .models import WebcamImage
 from django.core.files.base import ContentFile
 from django.utils import timezone
 import re
@@ -191,6 +193,16 @@ def search(request):
         # courrier = Courrier.objects.raw('select * from courrier where code="'+query+'" and types="'+querys+'"') 
 
 
+        # if not query or not querys:
+        #     messages.error(request, 'Vous devez renseigner ls champs.')
+        # return redirect('senat:search')
+
+        objects = Courrier.objects.filter(code=query, types=querys)
+        if not objects: 
+            messages.error(request, "Le code ou le type fourni n'existe pas")
+            return redirect('senat:search')
+
+
         response = redirect('/bureau_sg/' + f'?code={query}&types={querys}')
         # messages.add_message(request, messages.ERROR, ('Mauvais format de code !!!'))
         return response
@@ -211,6 +223,14 @@ def courrier_attente(request):
     #     request.is_active = False
     #     request.save()
     return render(request, 'courrier_attente.html', {"courrier": courrier})
+
+
+
+def deactivate_person(request, pk):
+    person = get_object_or_404(Courrier, pk=pk)
+    person.is_active = False
+    person.save()
+    return JsonResponse({'message': 'Person deactivated successfully.'})
 
 
 
@@ -322,11 +342,13 @@ def envoi_email(request):
         email = request.POST.get('email')
         # phone = request.POST.get('phone')
         message = request.POST.get('message')
+        attachment = request.FILES.get('attachment')
         form_data = {
             'name':name,
             'email':email,
             # 'phone':phone,
             'message':message,
+            'attachment':MIMEMultipart(),
         }
         recipient_list = email
         # message = '''
@@ -335,9 +357,10 @@ def envoi_email(request):
         # Email:\n\t\t{}\n
         
         
+        
         # '''.format(form_data['name'], form_data['message'], form_data['email'])
         # send_mail('You got a mail!', message, '', ['ngounouloic853@gmail.com']) # TODO: enter your email address
-        send_mail(name, message, email, [recipient_list])
+        send_mail(name, message, email, [recipient_list], attachment)
         
 
     return render(request,'envoi_email.html', {"courrier": courrier, "count_courrier": count_courrier})
@@ -349,104 +372,99 @@ def envoi_email(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def inde(request):
-#     return render(request, 'capture/inde.html')
-
-# def capture(request):
-#     return render(request, 'capture/capture.html')
-
-# def save_picture(request):
-#     # Create a Picture form class based on the model
-#     PictureForm = modelform_factory(Picture, fields=('name', 'image'))
-    
-#     if request.method == 'POST':
-#         # Create a form instance with the POST data and files
-#         form = PictureForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             # Save the Picture object to the database
-#             form.save()
-#             # Redirect to the index page
-#             return redirect('senat:inde')
-#     else:
-#         # Render the form for GET requests
-#         form = PictureForm()
-    
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'capture/save.html', context)
-
-
-
-# def webcam(request):
-#     if request.method == 'POST' and request.FILES['image']:
-#         image_file = request.FILES['image']
-#         fs = FileSystemStorage()
-#         filename = fs.save('webcam_images/'+image_file.name, image_file)
-#         image_url = fs.url(filename)
-#         WebcamImage.objects.create(image=image_file)
-#         return redirect('webcam')
-#     else:
-#         return render(request, 'webcam.html')
-
-
-# def webcam_capture(request):
-#     if request.method == 'POST':
-#         image_data = request.POST.get('image_data')
-#         if image_data:
-#             # Use regular expression to match image format and data
-#             match = re.search(r'data:image/(?P<format>.*?);base64,(?P<data>.*)', image_data)
-#             if not match:
-#                 return HttpResponseBadRequest('Invalid image data')
-#             # Decode base64-encoded image data
-#             image_data = match.group('data')
-#             image = ContentFile(base64.b64decode(image_data), name='webcam.png')
-#             # Save image to database
-#             webcam_image = WebcamImage(image=image, timestamp=timezone.now())
-#             webcam_image.save()
-#             return redirect('senat:webcam')
-#     return render(request, 'webcam.html')
-
-
 import base64
 import io
 import numpy as np
 import cv2
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from .models import WebcamImage
+from django.http import JsonResponse, HttpResponse
+from .models import Capture
+from io import BytesIO
+from django.utils.encoding import smart_str
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.utils import ImageReader
+from reportlab.pdfgen import canvas
 
-def webcam(request):
-    return render(request, 'webcam.html')
 
-def save_image(request):
+def indexs(request):
+    return render(request, 'indexs.html')
+
+
+
+# def capture(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         image_data = request.POST.get('image')
+#         image_data = image_data.replace('data:image/png;base64,', '')
+#         image_data = base64.b64decode(image_data)
+#         capture = Capture(name=name)
+#         image_file = BytesIO(image_data)
+#         capture.image.save(name + '.png', image_file)
+#         capture.save()
+#         return redirect('senat:captures')
+#     return render(request, 'capture.html')
+
+
+
+def captures(request):
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
+    captures = Scan.objects.all()
+    return render(request, 'captures.html', {'captures': captures, 'count_courrier':count_courrier})
+
+
+
+
+
+
+
+
+
+
+def scan(request):
+    form = ScanForm(request.POST, request.FILES)
+    scan = Scan()
+
     if request.method == 'POST':
-        imgstr = request.POST.get('image')
-        if imgstr:
-            # Convert base64 string to numpy array
-            nparr = np.fromstring(base64.b64decode(imgstr), np.uint8)
-            # Decode numpy array to image
-            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-            # Save image to database
-            image = WebcamImage(image=io.BytesIO(cv2.imencode('.jpg', img)[1]).getvalue())
-            image.save()
-            return JsonResponse({'success': True})
-        return JsonResponse({'success': False})
+        if form.is_valid():
+            scan.name = form.cleaned_data['name']                
+            scan.file = form.cleaned_data['file']                
+        
+            scan.save()
+            messages.add_message(request, messages.SUCCESS, (f"Informations du courrier enregistrées avec succès."))
+            return redirect('senat:scan')
+        else:
+            messages.add_message(request, messages.ERROR, ('Veuillez vérifier les champs !!!'))
+            return render(request, 'scan.html', {'form': form})
+    context = {
+        'form': form,
+    }
+    return render(request,'scan.html', context)
 
-def webcam_list(request):
-    images = WebcamImage.objects.all().order_by('-timestamp')
-    return render(request, 'webcam_list.html', {'images': images})
+
+
+
+
+
+
+def download_capture(request, capture_id):
+    capture = get_object_or_404(Scan, id=capture_id)
+    response = HttpResponse(capture.file, content_type='image/png')
+    response['Content-Disposition'] = 'attachment; filename={}'.format(smart_str(capture.name + '.png'))
+    return response
+
+def download_capture_pdf(request, capture_id):
+    capture = get_object_or_404(Scan, id=capture_id)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename={}'.format(smart_str(capture.name + '.pdf'))
+    buffer = io.BytesIO()
+    pdf = canvas.Canvas(buffer, pagesize=letter)
+    img = ImageReader(capture.file.path)
+    pdf.drawImage(img, 0, 0, width=letter[0], height=letter[1])
+    pdf.showPage()
+    pdf.save()
+    pdf_data = buffer.getvalue()
+    buffer.close()
+    response.write(pdf_data)
+    return response

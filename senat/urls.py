@@ -15,6 +15,9 @@ urlpatterns = [
     path('usager/', views.usager, name='usager'),
     path('search/', views.search, name='search'),
     path('courrier_attente/', views.courrier_attente, name='courrier_attente'),
+
+    path('person/<int:pk>/deactivate/', views.deactivate_person, name='deactivate_person'),
+
     path('<int:id>', views.courrier_attente_detail, name='courrier_attente_detail'),
     path('search_chef/', views.search_chef, name='search_chef'),
     path('result_chef/', views.result_chef, name='result_chef'),
@@ -26,6 +29,7 @@ urlpatterns = [
     # path('sg_record/', sg_record, name='sg_record'),
     path('envoi_email/', views.envoi_email, name='envoi_email'),
 
+    path('scan', views.scan, name='scan'),
 
 
 
@@ -37,14 +41,9 @@ urlpatterns = [
 
 
 
-
-    # path('inde/', views.inde, name='inde'),
+    # path('inde/', views.indexs, name='indexs'),
     # path('capture/', views.capture, name='capture'),
-    # path('save/', views.save_picture, name='save_picture'),
-
-    # path('webcam/', views.webcam, name='webcam')
-    # path('webcam/', views.webcam_capture, name='webcam'),
-    path('inde/', views.webcam, name='webcam'),
-    path('save_image/', views.save_image, name='save_image'),
-    path('list/', views.webcam_list, name='webcam_list'),
+    path('captures/', views.captures, name='captures'),
+    path('capture/<int:capture_id>/download/', views.download_capture, name='download_capture'),
+    path('capture_pdf/<int:capture_id>/download/', views.download_capture_pdf, name='download_capture_pdf'),
 ]

@@ -4,6 +4,7 @@ from django.http import request
 from senat.models import *
 from django import forms
 from django.utils.safestring import mark_safe  # import pour mettre une url dans le help text
+from django.contrib import messages
 
 
 class RegistrationForm(forms.ModelForm):
@@ -15,6 +16,14 @@ class RegistrationForm(forms.ModelForm):
         # Code qui permet de rendre obligatoire certains champs au niveau HTML
         for field in self.Meta.required:
             self.fields[field].required = True
+    
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        if date and date != date.today():
+            raise forms.ValidationError("")
+        return cleaned_data
 
 
     class Meta:
@@ -80,4 +89,35 @@ class MentionForm(forms.ModelForm):
         help_texts = {
             'mention':("Sélectionnez la mention du courrier"), 
             'service_traitement':("Sélectionnez le service de traitement du courrier"), 
+        }
+
+
+
+class ScanForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Code qui permet de rendre obligatoire certains champs au niveau HTML
+        for field in self.Meta.required:
+            self.fields[field].required = True
+    
+    class Meta:
+        model = Scan
+        fields = [
+            'name', 
+            'file',
+        ]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Année de dépôt du courrier...'}),
+            'file': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Objet du courrier...'}),
+        }
+
+        required = (
+            'name','file'
+        )
+        
+        help_texts = {
+            'name':("Saisissez un titre pour le courrier"), 
+            'file':("Sélectionnez un fichier (image ou pdf)"), 
         }

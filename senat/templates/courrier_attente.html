@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
-
+<script src=“https://code.jquery.com/jquery-3.5.1.min.js” integrity=“sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj” crossorigin=“anonymous”></script>
 
 <style>
 /*body {
@@ -315,13 +315,25 @@ a[data-toggle="collapse"] {
                 <li>
                     <a href="{% url 'senat:list_courrier' %}">
                         <i class="fas fa-cog mr-2"></i>
-                        Imprimer un Courrier
+                        Listing des Courriers
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'senat:envoi_email' %}">
                         <i class="fas fa-cog mr-2"></i>
                         Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
                     </a>
                 </li>
             </ul>
@@ -367,11 +379,8 @@ a[data-toggle="collapse"] {
                                                 En cliquant sur OUI vous confirmez avoir traité le courrier
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                                <a style="color: black" href="  ">
-                                                    <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                                
-                                                </a>
+                                                    <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                    <button type="button" id="deactivatePersonBtn" name="is_active" value="False" style="background-color: green; border: none" class="btn btn-primary" data-dismiss="modal">OUI</button>
                                                 </div>
                                             </div>
                                             </div>
@@ -504,6 +513,25 @@ a[data-toggle="collapse"] {
     });
 })(jQuery);
 </script> {% endcomment %}
+
+    <script>
+        ('#deactivatePersonModal').on('show.bs.modal', function(event) {
+            var button =(event.relatedTarget);
+            var pk = button.data('pk');
+            var modal = (this);
+        
+            modal.find('#deactivatePersonBtn').on('click', function() {
+                .ajax({
+                url: '/person/' + pk + '/deactivate/',
+                type: 'POST',
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                success: function(data) {
+                    console.log(data.message);
+                }
+            });
+        });
+        });
+    </script>
 
 </body>
 </html>

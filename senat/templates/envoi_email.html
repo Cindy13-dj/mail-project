@@ -449,13 +449,25 @@ textarea{
                 <li>
                     <a href="{% url 'senat:list_courrier' %}">
                         <i class="fas fa-cog mr-2"></i>
-                        Imprimer un Courrier
+                        Listing des Courriers
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <i class="fas fa-cog mr-2"></i>
                         Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
                     </a>
                 </li>
             </ul>
@@ -476,7 +488,7 @@ textarea{
                 <h2 class="mb-4 mt-4">ENVOYER UN MAIL</h2>
                 <div class="container">
                     <section class="section" id="contact">
-                        <form action="" name="contactForm" method="POST" onsubmit="return validateForm()">
+                        <form action="" name="contactForm" enctype=“multipart/form-data” method="POST" onsubmit="return validateForm()">
                             {% csrf_token %}
                             <div class="contact-box">
                                 {% comment %} <div class="left"></div> {% endcomment %}
@@ -486,6 +498,7 @@ textarea{
                                     <input type="text" class="field" placeholder="Email" name="email">
                                     {% comment %} <input type="text" class="field" placeholder="Phone" name="phone"> {% endcomment %}
                                     <textarea placeholder="Message" class="field" name="message"></textarea>
+                                    <input type="file" class="form-control-file" id="attachment" name="attachment">
                                     <button class="btn">Send</button>
                                 </div>
                             </div>

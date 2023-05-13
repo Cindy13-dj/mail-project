@@ -1,6 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 
 
 
@@ -265,41 +265,69 @@ a[data-toggle="collapse"] {
 
 #content {
     width: 100%;
-    padding-left: 350px;
+    padding-left: 300px;
     transition: all 0.3s;
 }
 
-.head{
-    margin-top: 50px;
-}
-.head1{
+
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+  .section-title {
+    margin-top: 30px;
     text-align: center;
-    line-height: 10px;
-}
-.head2{
-    width: 550px;
-}
-.head3{
-    text-align: center;
-    line-height: 10px;
-}
-.objet{
-    text-align: center;
-}
-.objet h6{
-    text-decoration: underline;
-}
-.objet1{
-    width: 300px;
-}
-.objet2{
-    width: 300px;
-}
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
 </style>
 
 </head>
 <body>
-
 
     <div class="wrapper">
         <nav id="sidebar">
@@ -374,54 +402,80 @@ a[data-toggle="collapse"] {
                     </button>
                 </div>
             </nav>
+
             <div class="container-fluid">
-                <h2 class="mb-4 mt-4">DETAIL DU COURRIER</h2>
-                <div class="container">
-                    <table class="head">
-                        <tr>
-                            <td class="head1">
-                                <p>REPUBLIQUE DU CAMEROUN</p>
-                                <p>Paix-Travail-Patrie</p>
-                                <p>--------</p>
-                                <p>SENAT</p>
-                                <p>--------</p>
-                            </td>
-                            <td class="head2">
-            
-                            </td>
-                            <td class="head3">
-                                <p>REPUBLIC OF CAMEROON</p>
-                                <p>Peace-Work-Fatherland</p>
-                                <p>--------</p>
-                                <p>SENATE</p>
-                                <p>--------</p>
-                            </td>
-                        </tr>
-                    </table>
-                    <br><br><br>
-                    <table class="obj">
-                        <tr>
-                            <td class="objet1">
-                                
-                            </td>
-                            <td class="objet">
-                                <h6>{{ obj.types }} N 23 / {{ obj.code }} / AB / SEN DU {{ obj.date }}</h6><br>
-                                <p>{{ obj.objet }}.
-                                </p>
-                            </td>
-                            <td class="objet2">
-                                
-                            </td>
-                        </tr>
-                    </table>
+                <div class="section-title">
+                    <span>IMPRIMER UN COURRIER</span>
+                    <h2>IMPRIMER UN COURRIER</h2>
                 </div>
-            </div>
+                <div class="card card-body">
+                    <form class = "form-inline" method="get">
+                        {%for field in courriers_filter.form %}
+                            <div class="form-group">
+                                <label for="id_{{field.name}}" style="font-weight: bold;">{{field.label}}</label>&nbsp;&nbsp;
+                                {{field}}
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {%endfor%} &nbsp;&nbsp;       
+                        <button class="btn btn-primary" style="width: 80px" type="submit">Filtrer!</button>
+                    </form>
+                </div>
+                <br><br>
+                <div class="container">
+                    {% comment %} {% for courrier in courriers_filter.qs %} {% endcomment %}
+                        {% comment %} <div class="row">
+                            <div class="col-md-8">
+                                <h5 style="color:Navy;">{{courrier.types}} N°{{courrier.code}}</h5><p style="font-size: 16px">{{courrier.objet}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="df/{{courrier.pk}}" target="_blank" class="btn btn-warning">Imprimer PDF</a>
+                            </div>
+                        </div>
+                        <hr> {% endcomment %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-primary" scope="col">Nom</th>
+                                    <th class="text-primary" scope="col">Image</th>
+                                    <th class="text-primary" scope="col">Date</th>
+                                    <th class="text-primary" scope="col">Image</th>
+                                    <th class="text-primary" scope="col">Pdf</th>
+                                </tr>
+                            </thead>
+                            {% for capture in captures %}
+                                <tbody>
+                                    <tr>
+                                        <td class="text-success" style="font-weight: bold">{{ capture.name }}</td>
+                                        <td><img src="{{ capture.file.url }}" width="50px; height: 50px"></td>
+                                        {%language 'fr' %}
+                                            <td class="text-info" style="font-weight: bold">{{capture.created_at}}</td>
+                                        {% endlanguage %}
+                                        <td><a href="{% url 'senat:download_capture' capture.id %}" class="btn btn-danger" style="font-weight: bold">Télécharger</a></td>
+                                        <td><a href="{% url 'senat:download_capture_pdf' capture.id %}" class="btn btn-warning" style="font-weight: bold">Télécharger</a></td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    {% comment %} {% endfor %} {% endcomment %}
+                </div>
+                {% comment %} {% if courriers_list.has_other_pages %} {% endcomment %}
+                {% comment %} <nav aria-label="Page navigation conatiner" >
+                    <ul class="pagination pagination" style="justify-content: center;">
+                        {% for page in paginator.page_range %}
+                            {% if page == courrierss.number %}
+                                <li class="page-item active" arria-current="page">
+                                    <span class="page-link">{{page}}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{page}}" class="page-link">{{ page }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav> {% endcomment %}
+            </div>        
         </div>
     </div>
-
-
-
-
 
 
 
@@ -454,9 +508,6 @@ a[data-toggle="collapse"] {
                 <li>
                     <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
                 </li>
-                <li>
-                    <a href="{% url 'senat:list_courrier' %}">Imprimer un Courrier </a>
-                </li>
             </ul>
             
         </div>
@@ -464,65 +515,58 @@ a[data-toggle="collapse"] {
     <div id="content" class="p-4 p-md-5 ">
             <div class="container-fluid">
             </div>
-        <h2 class="mb-4 mt-4">DETAIL DU COURRIER</h2>
-
+        <h2 class="mb-4 mt-4">IMPRIMER UN COURRIER</h2>
+    
+        
+    <div class="card card-body">
+        <form method="get">
+            {{ myFilter.form.as_p }}
+            <button class="btn btn-primary" type="submit">Filtrer</button>
+        </form>
+    </div>
+    <br><br>
+        
+        
         
             <div class="container">
-                    <table class="head">
-                        <tr>
-                            <td class="head1">
-                                <p>REPUBLIQUE DU CAMEROUN</p>
-                                <p>Paix-Travail-Patrie</p>
-                                <p>--------</p>
-                                <p>SENAT</p>
-                                <p>--------</p>
-                            </td>
-                            <td class="head2">
-            
-                            </td>
-                            <td class="head3">
-                                <p>REPUBLIC OF CAMEROON</p>
-                                <p>Peace-Work-Fatherland</p>
-                                <p>--------</p>
-                                <p>SENATE</p>
-                                <p>--------</p>
-                            </td>
-                        </tr>
-                    </table>
-                    <br><br><br>
-                    <table class="obj">
-                        <tr>
-                            <td class="objet1">
-                                
-                            </td>
-                            <td class="objet">
-                                <h6>{{ obj.types }} N 23 / {{ obj.code }} / AB / SEN DU {{ obj.date }}</h6><br>
-                                <p>{{ obj.objet }}.
-                                </p>
-                            </td>
-                            <td class="objet2">
-                                
-                            </td>
-                        </tr>
-                    </table>
-                
+                {% for courrier in courriers %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5 style="color:Navy;">{{courrier.types}} N°{{courrier.code}}</h5><p style="font-size: 16px">{{courrier.objet}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="df/{{courrier.pk}}" target="_blank" class="btn btn-warning">Imprimer PDF</a>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
             </div>
+
+            
+
+            
+                <nav aria-label="Page navigation conatiner" >
+                    <ul class="pagination pagination" style="justify-content: center;">
+                        {% for page in paginator.page_range %}
+                            {% if page == courriers.number %}
+                                <li class="page-item active" arria-current="page">
+                                    <span class="page-link">{{page}}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{page}}" class="page-link">{{ page }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+                </div>
      
 
 
-    </div> {% endcomment %}
-    {% comment %} <div class="" style="margin-top: 15em;">
-        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
-            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
-            <div class="card-body">
-                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
-                    renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
-                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
-                </p>
-            </div>
-        </div>
-    </div> {% endcomment %}
-{% comment %} </div>
+    </div>
+    
+</div>
 <script>
 (function ($) {
     "use strict";
@@ -541,3 +585,55 @@ a[data-toggle="collapse"] {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% block content %}
+    <h1>Captures</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for capture in captures %}
+                <tr>
+                    <td>{{ capture.name }}</td>
+                    <td><img src="{{ capture.image.url }}" width="100"></td>
+                    <td>{{ capture.created_at }}</td>
+                    <td><a href="{% url 'senat:download_capture' capture.id %}">Download</a></td>
+                    <td><a href="{% url 'senat:download_capture_pdf' capture.id %}">Download PDF</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %} {% endcomment %}
