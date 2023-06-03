@@ -60,5 +60,6 @@ class SignUpForm(UserCreationForm):
             'is_Chef_bureau_depart', 
             'is_Chef_bureau_arrive',
             'is_Secretaire_general',
+            'is_Universite',
             'is_Usager'
             )

@@ -66,6 +66,9 @@ def user_login(request):
         elif user is not None and user.is_Secretaire_general:
             login(request, user)
             return redirect('senat:search')
+        elif user is not None and user.is_Universite:
+            login(request, user)
+            return redirect('senat:search_univ')
         elif user is not None and user.is_Usager:
             login(request, user)
             return redirect('senat:usager')

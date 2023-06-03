@@ -12,11 +12,13 @@ urlpatterns = [
     path('chef_arrive/', views.chef_arrive, name='chef_arrive'),
     # path(r'^(?P<id>\d+)bureau_sg/$', views.bureau_sg, name='bureau_sg'),
     path('bureau_sg/', views.bureau_sg, name='bureau_sg'),
+    path('bureau_univ/', views.bureau_univ, name='bureau_univ'),
     path('usager/', views.usager, name='usager'),
     path('search/', views.search, name='search'),
+    path('search_univ/', views.search_univ, name='search_univ'),
     path('courrier_attente/', views.courrier_attente, name='courrier_attente'),
 
-    path('person/<int:pk>/deactivate/', views.deactivate_person, name='deactivate_person'),
+    
 
     path('<int:id>', views.courrier_attente_detail, name='courrier_attente_detail'),
     path('search_chef/', views.search_chef, name='search_chef'),
@@ -34,7 +36,7 @@ urlpatterns = [
 
 
 
-
+    path('<int:id>', views.deactivate_record, name='deactivate_record'),
 
 
 

@@ -109,8 +109,8 @@ class ScanForm(forms.ModelForm):
             'file',
         ]
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titre du courrier a scanner...'}),
-            'file': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Fichier...'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Année de dépôt du courrier...'}),
+            'file': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Objet du courrier...'}),
         }
 
         required = (
