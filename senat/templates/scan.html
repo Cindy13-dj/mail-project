@@ -21,6 +21,16 @@
 <link rel="stylesheet" href="{% static 'senat/css/remix-icons.css' %}">
 
 <style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;*/
+  
+}
 .wrapper {
     display: flex;
     width: 100%;
@@ -93,6 +103,61 @@
 .help-block strong{
     display: none;
 }
+
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
 </style>
 
 </head>
@@ -101,10 +166,12 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header text-center">
-                <h5>Cybex Courrier</h5>
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
             </div>
+            {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
             <div class="text-center">
-                <img src="{% static 'landing/assets/img/n.jpeg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
@@ -166,9 +233,13 @@
             </nav>
 
             <div class="container-fluid">
-                <h2 class="mb-4 mt-4">SCANNER DU COURRIER</h2>
+                {% comment %} <h2 class="mb-4 mt-4">SCANNER DU COURRIER</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>SCANNER UN COURRIER</span>
+                    <h2>SCANNER UN COURRIER</h2>
+                </div>
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-11">
                         {% include '_partials/messages.html' %}
                         <div class="form-group">
                             <form method="POST" enctype="multipart/form-data">

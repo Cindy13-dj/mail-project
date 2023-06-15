@@ -21,191 +21,16 @@
 
 
 <style>
-/*body {
-    font-family: "Poppins", Arial, sans-serif;
-    font-size: 14px;
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
     line-height: 1.8;
     font-weight: normal;
-    background: #fafafa;
+    background: #fafafa;*/
   
 }
-a {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-  
-    color: #fff;
-}
-a:hover,
-a:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #fff;
-}
-button {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-}
-button:hover,
-button:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: "Poppins", Arial, sans-serif;
-    color: #000;
-}
-.ftco-section {
-    padding: 7em 0;
-}
-.ftco-no-pt {
-    padding-top: 0;
-}
-.ftco-no-pb {
-    padding-bottom: 0;
-}
-.heading-section {
-    font-size: 28px;
-    color: #000;
-}
-.heading-section small {
-    font-size: 18px;
-}
-.img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-.navbar-btn {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-.wrapper {
-    width: 100%;
-}
-#sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    background: #2a5555;
- 
-    color: #fff;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-#sidebar.active {
-    margin-left: -300px;
-}
-#sidebar .logo {
-    display: block;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-}
-#sidebar .logo span {
-    display: block;
-}
-#sidebar ul.components {
-    padding: 0;
-}
-#sidebar ul li {
-    font-size: 16px;
-}
-#sidebar ul li > ul {
-    margin-left: 10px;
-}
-#sidebar ul li > ul li {
-    font-size: 14px;
-}
-#sidebar ul li a {
-    padding: 10px 0;
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-#sidebar ul li a:hover {
-   
-    color: #fff;
-}
-#sidebar ul li.active > a {
-    background: transparent;
-    color: #2a5555;
-}
-@media (max-width: 991.98px) {
-    #sidebar {
-        margin-left: -300px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-a[data-toggle="collapse"] {
-    position: relative;
-}
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-@media (max-width: 991.98px) {
-    #sidebarCollapse span {
-        display: none;
-    }
-}
-#content {
-    width: 100%;
-    padding: 0;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-.btn.btn-primary {
-    background: #2a5555;
-    border-color: #2a5555;
-}
-.btn.btn-primary:hover,
-.btn.btn-primary:focus {
-    background: #2a5555 !important;
-    border-color: #2a5555 !important;
-}*/
 .wrapper {
     display: flex;
     width: 100%;
@@ -404,10 +229,59 @@ textarea{
 		height: 200px;
 	}
 }
-.active{
-    background-color: #5f0b74;
-  }
 
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
 </style>
 
 </head>
@@ -417,15 +291,16 @@ textarea{
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header text-center">
-                <h5>Cybex Courrier</h5>
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
             </div>
             {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
             <div class="text-center">
-                <img src="{% static 'landing/assets/img/n.jpeg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
-                <li class="">
+                <li class="active">
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
@@ -455,7 +330,7 @@ textarea{
                         Listing des Courriers
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#">
                         <i class="fas fa-cog mr-2"></i>
                         Email
@@ -488,10 +363,14 @@ textarea{
                 </div>
             </nav>
             <div class="container-fluid">
-                <h2 class="mb-4 mt-4">ENVOYER UN MAIL</h2>
+                {% comment %} <h2 class="mb-4 mt-4">ENVOYER UN MAIL</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>ENVOYER UN MAIL</span>
+                    <h2>ENVOYER UN MAIL</h2>
+                </div>
                 <div class="container">
                     <section class="section" id="contact">
-                        <form action="" name="contactForm" method="POST" onsubmit="return validateForm()">
+                        <form action="" name="contactForm" enctype=“multipart/form-data” method="POST" onsubmit="return validateForm()">
                             {% csrf_token %}
                             <div class="contact-box">
                                 {% comment %} <div class="left"></div> {% endcomment %}
@@ -501,7 +380,9 @@ textarea{
                                     <input type="text" class="field" placeholder="Email" name="email">
                                     {% comment %} <input type="text" class="field" placeholder="Phone" name="phone"> {% endcomment %}
                                     <textarea placeholder="Message" class="field" name="message"></textarea>
-                                    <button class="btn">Send</button>
+                                    <input type="file" class="form-control-file" id="attachment" name="attachment">
+                                    <br>
+                                    <button class="btn">Envoyer</button>
                                 </div>
                             </div>
                         </form>

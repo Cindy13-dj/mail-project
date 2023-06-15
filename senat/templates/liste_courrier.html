@@ -21,191 +21,16 @@
 
 
 <style>
-/*body {
-    font-family: "Poppins", Arial, sans-serif;
-    font-size: 14px;
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
     line-height: 1.8;
     font-weight: normal;
-    background: #fafafa;
+    background: #fafafa;*/
   
 }
-a {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-  
-    color: #fff;
-}
-a:hover,
-a:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #fff;
-}
-button {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-}
-button:hover,
-button:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: "Poppins", Arial, sans-serif;
-    color: #000;
-}
-.ftco-section {
-    padding: 7em 0;
-}
-.ftco-no-pt {
-    padding-top: 0;
-}
-.ftco-no-pb {
-    padding-bottom: 0;
-}
-.heading-section {
-    font-size: 28px;
-    color: #000;
-}
-.heading-section small {
-    font-size: 18px;
-}
-.img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-.navbar-btn {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-.wrapper {
-    width: 100%;
-}
-#sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    background: #2a5555;
- 
-    color: #fff;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-#sidebar.active {
-    margin-left: -300px;
-}
-#sidebar .logo {
-    display: block;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-}
-#sidebar .logo span {
-    display: block;
-}
-#sidebar ul.components {
-    padding: 0;
-}
-#sidebar ul li {
-    font-size: 16px;
-}
-#sidebar ul li > ul {
-    margin-left: 10px;
-}
-#sidebar ul li > ul li {
-    font-size: 14px;
-}
-#sidebar ul li a {
-    padding: 10px 0;
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-#sidebar ul li a:hover {
-   
-    color: #fff;
-}
-#sidebar ul li.active > a {
-    background: transparent;
-    color: #2a5555;
-}
-@media (max-width: 991.98px) {
-    #sidebar {
-        margin-left: -300px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-a[data-toggle="collapse"] {
-    position: relative;
-}
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-@media (max-width: 991.98px) {
-    #sidebarCollapse span {
-        display: none;
-    }
-}
-#content {
-    width: 100%;
-    padding: 0;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-.btn.btn-primary {
-    background: #2a5555;
-    border-color: #2a5555;
-}
-.btn.btn-primary:hover,
-.btn.btn-primary:focus {
-    background: #2a5555 !important;
-    border-color: #2a5555 !important;
-}*/
 .wrapper {
     display: flex;
     width: 100%;
@@ -324,9 +149,6 @@ a[data-toggle="collapse"] {
       font-size: 38px;
     }
   }
-  .active{
-    background-color: #5f0b74;
-  }
 </style>
 
 </head>
@@ -335,15 +157,16 @@ a[data-toggle="collapse"] {
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header text-center">
-                <h5>Cybex Courrier</h5>
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
             </div>
             {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
             <div class="text-center">
-                <img src="{% static 'landing/assets/img/n.jpeg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
-                <li class="">
+                <li class="active">
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
@@ -365,12 +188,6 @@ a[data-toggle="collapse"] {
                     <a href="{% url 'senat:search_chef' %}">
                         <i class="fas fa-tasks mr-2"></i>
                         Recherche d'un Courrier
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="{% url 'senat:list_courrier' %}">
-                        <i class="fas fa-cog mr-2"></i>
-                        Listing des Courriers
                     </a>
                 </li>
                 <li>
@@ -408,8 +225,8 @@ a[data-toggle="collapse"] {
 
             <div class="container-fluid">
                 <div class="section-title">
-                    <span>IMPRIMER UN COURRIER</span>
-                    <h2>IMPRIMER UN COURRIER</h2>
+                    <span>LISTE DES COURRIERS</span>
+                    <h2>LISTE DES COURRIERS</h2>
                 </div>
                 <div class="card card-body">
                     <form class = "form-inline" method="get">
@@ -448,9 +265,9 @@ a[data-toggle="collapse"] {
                                     <tr>
                                         <td class="text-success" style="font-weight: bold">{{courrier.types}}</td>
                                         <td class="text-danger" style="font-weight: bold">N°{{courrier.code}}</td>
-                                        <td class="text" style="font-weight: bold">{{courrier.objet}}</td>
+                                        <td class="text-info" style="font-weight: bold">{{courrier.objet}}</td>
                                         {%language 'fr' %}
-                                            <td class="text-info" style="font-weight: bold">{{courrier.created_at}}</td>
+                                            <td class="text-warning" style="font-weight: bold">{{courrier.created_at}}</td>
                                         {% endlanguage %}
                                     </tr>
                                 </tbody>

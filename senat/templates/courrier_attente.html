@@ -18,194 +18,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
-
+<script src=“https://code.jquery.com/jquery-3.5.1.min.js” integrity=“sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj” crossorigin=“anonymous”></script>
 
 <style>
-/*body {
-    font-family: "Poppins", Arial, sans-serif;
-    font-size: 14px;
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
     line-height: 1.8;
     font-weight: normal;
-    background: #fafafa;
+    background: #fafafa;*/
   
 }
-a {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-  
-    color: #fff;
-}
-a:hover,
-a:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #fff;
-}
-button {
-    -webkit-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-}
-button:hover,
-button:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: "Poppins", Arial, sans-serif;
-    color: #000;
-}
-.ftco-section {
-    padding: 7em 0;
-}
-.ftco-no-pt {
-    padding-top: 0;
-}
-.ftco-no-pb {
-    padding-bottom: 0;
-}
-.heading-section {
-    font-size: 28px;
-    color: #000;
-}
-.heading-section small {
-    font-size: 18px;
-}
-.img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-.navbar-btn {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-.wrapper {
-    width: 100%;
-}
-#sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    background: #2a5555;
- 
-    color: #fff;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-#sidebar.active {
-    margin-left: -300px;
-}
-#sidebar .logo {
-    display: block;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-}
-#sidebar .logo span {
-    display: block;
-}
-#sidebar ul.components {
-    padding: 0;
-}
-#sidebar ul li {
-    font-size: 16px;
-}
-#sidebar ul li > ul {
-    margin-left: 10px;
-}
-#sidebar ul li > ul li {
-    font-size: 14px;
-}
-#sidebar ul li a {
-    padding: 10px 0;
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-#sidebar ul li a:hover {
-   
-    color: #fff;
-}
-#sidebar ul li.active > a {
-    background: transparent;
-    color: #2a5555;
-}
-@media (max-width: 991.98px) {
-    #sidebar {
-        margin-left: -300px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
-a[data-toggle="collapse"] {
-    position: relative;
-}
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-@media (max-width: 991.98px) {
-    #sidebarCollapse span {
-        display: none;
-    }
-}
-#content {
-    width: 100%;
-    padding: 0;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-.btn.btn-primary {
-    background: #2a5555;
-    border-color: #2a5555;
-}
-.btn.btn-primary:hover,
-.btn.btn-primary:focus {
-    background: #2a5555 !important;
-    border-color: #2a5555 !important;
-}*/
 .wrapper {
     display: flex;
     width: 100%;
@@ -277,6 +102,57 @@ a[data-toggle="collapse"] {
     transition: all 0.3s;
 }*/
 
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
 </style>
 
 </head>
@@ -286,11 +162,12 @@ a[data-toggle="collapse"] {
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header text-center">
-                <h5>Cybex Courrier</h5>
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
             </div>
             {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
             <div class="text-center">
-                <img src="{% static 'landing/assets/img/n.jpeg' %}" class="img logo rounded-circle mb-3 mt-3" style="width: 100px; height: 100px;">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
@@ -352,7 +229,11 @@ a[data-toggle="collapse"] {
             </nav>
 
             <div class="container-fluid">
-                <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
+                {% comment %} <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>LISTE DE COURRIERS EN ATTENTE</span>
+                    <h2>LISTE DE COURRIERS EN ATTENTE</h2>
+                </div>
                 <div class="container">
                     <div class="row">
                         {% for courriers in courrier %}
@@ -365,29 +246,34 @@ a[data-toggle="collapse"] {
                                         <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
                                             <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
                                         </a>
-                                        <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                        {% comment %} {% for records in record %} {% endcomment %}
+                                            {% comment %} <form method=“post” action="{% url 'senat:deactivate_record' courriers.pk %}"> {% endcomment %}
+                                                <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
+                                            {% comment %} </form> {% endcomment %}
+                                        {% comment %} {% endfor %} {% endcomment %}
+                                        {% comment %} <form method="POST">
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    En cliquant sur OUI vous confirmez avoir traité le courrier
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                        {% if record.is_active %}
+                                                            <button type="button" data-record-id="{{ record.pk }}" id="deactivatePersonBtn" style="background-color: green; border: none" class="btn btn-primary deactivate-btn" >OUI</button>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                En cliquant sur OUI vous confirmez avoir traité le courrier
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                                <a style="color: black" href="  ">
-                                                    <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                                
-                                                </a>
                                                 </div>
                                             </div>
-                                            </div>
-                                        </div>
+                                        </form> {% endcomment %}
                                     </div>
                                 </div>
                             </div>
@@ -404,117 +290,30 @@ a[data-toggle="collapse"] {
 
 
 
-
-
-
-
-
-
-{% comment %} <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar">
-        <div class="p-4 pt-5">
-            <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a>
-            
-            <p class="text-center"><span style="font-size: 20px">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
-            <ul class="list-unstyled components mb-5 mt-5">
-                <li>
-                    <a href="{% url 'account:index' %}">Deconnexion</a>
-                </li>
-                <li>
-                    <a href="{% url 'senat:chef_service' %}">Enregistrer un Courrier</a>
-                </li>
-                <li>
-                    <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
-                </li>
-                <li>
-                    <a href="{% url 'senat:list_courrier' %}">Imprimer un Courrier </a>
-                </li>
-            </ul>
-            
-        </div>
-    </nav>
-    <div id="content" class="p-4 p-md-5 ">
-            <div class="container-fluid">
-        <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2>
-
-        
-            
-        
-        
-        
-            <div class="container">
-                <div class="row">
-                    {% for courriers in courrier %}
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        
-                            <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
-                                <div class="card-body" style="border-top: 5px solid #2a5555; border-radius: 3px">
-                                    <p style="font-size: 20px; font-weight: bold;">
-                                        Code: {{ courriers.code }}
-                                    <p>
-                                    <a style="color: black" href=" {% url 'senat:courrier_attente_detail' courriers.id %} ">
-                                        <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
-                                    </a>
-                                    <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body">
-                                              En cliquant sur OUI vous confirmez avoir traité le courrier
-                                            </div>
-                                            <div class="modal-footer">
-                                              <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                              <a style="color: black" href="  ">
-                                                <button type="button" style="background-color: green; border: none" class="btn btn-primary">OUI</button>
-                                              
-                                              </a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                        
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-     
-
-
-    </div> {% endcomment %}
-    {% comment %} <div class="" style="margin-top: 15em;">
-        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
-            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
-            <div class="card-body">
-                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
-                    renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
-                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
-                </p>
-            </div>
-        </div>
-    </div> {% endcomment %}
-{% comment %} </div>
+{% comment %} 
 <script>
-(function ($) {
-    "use strict";
-    var fullHeight = function () {
-        $(".js-fullheight").css("height", $(window).height());
-        $(window).resize(function () {
-            $(".js-fullheight").css("height", $(window).height());
+    (document).ready(function() {
+        ('.record-link').click(function(e) {
+            e.preventDefault();
+            var url = (this).attr('href');
+
+            .get(url, function(data) {
+                ('#modal-content').html(data);
+                ('#record-detail-modal').modal('show');
+            });
         });
-    };
-    fullHeight();
-    $("#sidebarCollapse").on("click", function () {
-        $("#sidebar").toggleClass("active");
+
+        ('.deactivate-btn').click(function() {
+            (this).data('record-id');
+            var url = '{% url 'senat:deactivate_record' pk=' + recordId + ' %}';
+
+            $.post(url, function(data) {
+                if (data.url) {
+                    window.location.href = data.url;
+                }
+            });
+        });
     });
-})(jQuery);
 </script> {% endcomment %}
 
 </body>
