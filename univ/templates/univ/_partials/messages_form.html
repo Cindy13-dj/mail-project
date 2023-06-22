@@ -1,0 +1,9 @@
+{% if form.errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% comment %} {{form.non_field_errors|safe}} {% endcomment %}
+        La date doit être celle d'aujourd'hui
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}

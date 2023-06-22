@@ -48,4 +48,7 @@ urlpatterns = [
     path('captures/', views.captures, name='captures'),
     path('capture/<int:capture_id>/download/', views.download_capture, name='download_capture'),
     path('capture_pdf/<int:capture_id>/download/', views.download_capture_pdf, name='download_capture_pdf'),
+
+    path('search_usager/', views.search_usager, name='search_usager'),
+    path('result_usager/', views.result_usager, name='result_usager'),
 ]

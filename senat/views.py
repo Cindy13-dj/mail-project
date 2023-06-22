@@ -390,7 +390,7 @@ def envoi_email(request):
             'email':email,
             # 'phone':phone,
             'message':message,
-            'attachment':MIMEMultipart(),
+            #'attachment':MIMEMultipart(),
         }
         recipient_list = email
         # message = '''
@@ -515,3 +515,52 @@ def download_capture_pdf(request, capture_id):
     buffer.close()
     response.write(pdf_data)
     return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def search_usager(request):
+    
+    if request.method == 'POST':
+        query = request.POST.get('code')
+        querys = request.POST.get('types')
+        queryss = request.POST.get('objet')
+
+
+        response = redirect('/result_usager/' + f'?code={query}&types={querys}&objet={queryss}' or f'?code={query}&types={querys}&objet={queryss}' or f'?objet={queryss}')
+        return response
+    else:
+        return render(request, 'search_usager.html')
+
+
+
+def result_usager(request):
+    #compter le nombre de courrier
+    # courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    # count_courrier = courrier.count()
+
+    type_elt = request.GET.get('types')
+    code = request.GET.get('code')
+    objet = request.GET.get('objet')
+
+
+
+    courrier = Courrier.objects.filter(
+        code=code, types=type_elt
+    ) or Courrier.objects.filter(
+        code=code, types=type_elt, objet=objet
+    )or Courrier.objects.filter(
+        objet=objet
+    )
+    return render(request,'result_usager.html', {"courrier": courrier})

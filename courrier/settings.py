@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # new
     'accounts',
     'senat',
+    'univ',
     'crispy_forms',
     'import_export',
     'django_filters',

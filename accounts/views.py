@@ -57,6 +57,9 @@ def user_login(request):
         if user is not None and user.is_Chef_service:
             login(request, user)
             return redirect('senat:chef_service')
+        elif user is not None and user.is_Chef_univ:
+            login(request, user)
+            return redirect('univ:chef_univ')
         elif user is not None and user.is_Chef_bureau_depart:
             login(request, user)
             return redirect('senat:chef_depart')
@@ -68,7 +71,7 @@ def user_login(request):
             return redirect('senat:search')
         elif user is not None and user.is_Universite:
             login(request, user)
-            return redirect('senat:search_univ')
+            return redirect('univ:search_univ')
         elif user is not None and user.is_Usager:
             login(request, user)
             return redirect('senat:usager')

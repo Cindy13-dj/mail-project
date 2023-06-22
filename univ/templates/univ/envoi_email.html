@@ -1,0 +1,551 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;*/
+  
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #6A4E77; 
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    /*background-color: #6A4E77;*/
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    background-color:  #ae17aa;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding-left: 350px;
+    transition: all 0.3s;
+}
+
+.head{
+    margin-top: 50px;
+}
+.head1{
+    text-align: center;
+    line-height: 10px;
+}
+.head2{
+    width: 550px;
+}
+.head3{
+    text-align: center;
+    line-height: 10px;
+}
+.objet{
+    text-align: center;
+}
+.objet h6{
+    text-decoration: underline;
+}
+.objet1{
+    width: 300px;
+}
+.objet2{
+    width: 300px;
+}
+
+
+
+
+
+
+
+/*.contact-box{
+	width: 500px;
+	display: grid;
+    border-radius: 10px;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #b5ccd1;
+    transition: 0.5s;
+}*/
+
+.contact-box{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+}
+
+/*.contact-box:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+}*/
+
+
+
+.left{
+	background: url("some_image") no-repeat center; /*TODO: add some image*/
+	background-size: cover;
+	height: 100%;
+    border-radius: 10px;
+
+}
+
+.right{
+	padding: 25px 40px;
+}
+
+h2{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+}
+
+h2:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    /*background-color: #25a888;*/
+}
+
+.field{
+	width: 100%;
+	border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+	/*outline: none;*/
+    outline-color: #25a888;
+	background-color: rgba(230, 230, 230, 0.835);
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	margin-bottom: 22px;
+	transition: .3s;
+}
+
+.field:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+textarea{
+	min-height: 150px;
+}
+
+.btn{
+	width: 40%;
+	padding: 0.5rem 1rem;
+	background-color: #25a888;
+    border-radius: 3px;
+	color: #fff;
+	font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.15);
+}
+
+.field:focus{
+    background-color: #fff;
+}
+
+@media screen and (max-width: 768px){
+	.contact-box{
+		grid-template-columns: 1fr;
+	}
+	.left{
+		height: 200px;
+	}
+}
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
+            </div>
+            {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
+            <div class="text-center">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
+            </div>
+            <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'account:index' %}">
+                        <i class="ri-logout-circle-line"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:chef_univ' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:courrier_attente' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Courrier en attente <span style="font-size:10px; border: 1px solid red; padding-left: 3px; padding-right: 3px; border-radius: %; background-color: red">{{ count_courrier }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:search_chef' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:list_courrier' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Listing des Courriers
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog mr-2"></i>
+                        Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                {% comment %} <h2 class="mb-4 mt-4">ENVOYER UN MAIL</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>ENVOYER UN MAIL</span>
+                    <h2>ENVOYER UN MAIL</h2>
+                </div>
+                <div class="container">
+                    <section class="section" id="contact">
+                        <form action="" name="contactForm" enctype=“multipart/form-data” method="POST" onsubmit="return validateForm()">
+                            {% csrf_token %}
+                            <div class="contact-box">
+                                {% comment %} <div class="left"></div> {% endcomment %}
+                                <div class="right">
+                                    <h2>Email</h2>
+                                    <input type="text" class="field" placeholder="Titre" name="name">
+                                    <input type="text" class="field" placeholder="Email" name="email">
+                                    {% comment %} <input type="text" class="field" placeholder="Phone" name="phone"> {% endcomment %}
+                                    <textarea placeholder="Message" class="field" name="message"></textarea>
+                                    <input type="file" class="form-control-file" id="attachment" name="attachment">
+                                    <br>
+                                    <button class="btn">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a>
+            
+            <p class="text-center"><span style="font-size: 20px">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
+            <ul class="list-unstyled components mb-5 mt-5">
+                <li>
+                    <a href="{% url 'account:index' %}">Deconnexion</a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:chef_service' %}">Enregistrer un Courrier</a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:courrier_attente' %}">Courrier en attente <span style="font-size:10px; border: 1px solid red; padding-left: 3px; padding-right: 3px; border-radius: %; background-color: red">{{ count_courrier }}</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search_chef' %}">Recherche d'un Courrier </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:list_courrier' %}">Imprimer un Courrier </a>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+    <div id="content" class="p-4 p-md-5 ">
+            <div class="container-fluid">
+            </div>
+        <h2 class="mb-4 mt-4">DETAIL DU COURRIER</h2>
+
+        
+            <div class="container">
+                    <table class="head">
+                        <tr>
+                            <td class="head1">
+                                <p>REPUBLIQUE DU CAMEROUN</p>
+                                <p>Paix-Travail-Patrie</p>
+                                <p>--------</p>
+                                <p>SENAT</p>
+                                <p>--------</p>
+                            </td>
+                            <td class="head2">
+            
+                            </td>
+                            <td class="head3">
+                                <p>REPUBLIC OF CAMEROON</p>
+                                <p>Peace-Work-Fatherland</p>
+                                <p>--------</p>
+                                <p>SENATE</p>
+                                <p>--------</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <br><br><br>
+                    <table class="obj">
+                        <tr>
+                            <td class="objet1">
+                                
+                            </td>
+                            <td class="objet">
+                                <h6>{{ obj.types }} N 23 / {{ obj.code }} / AB / SEN DU {{ obj.date }}</h6><br>
+                                <p>{{ obj.objet }}.
+                                </p>
+                            </td>
+                            <td class="objet2">
+                                
+                            </td>
+                        </tr>
+                    </table>
+                
+            </div>
+     
+
+
+    </div> {% endcomment %}
+    {% comment %} <div class="" style="margin-top: 15em;">
+        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
+            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
+            <div class="card-body">
+                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
+                    renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
+                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
+                </p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+{% comment %} </div>
+<script>
+(function ($) {
+    "use strict";
+    var fullHeight = function () {
+        $(".js-fullheight").css("height", $(window).height());
+        $(window).resize(function () {
+            $(".js-fullheight").css("height", $(window).height());
+        });
+    };
+    fullHeight();
+    $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+    });
+})(jQuery);
+</script> {% endcomment %}
+
+</body>
+<script>
+    function validateForm(){
+        let name = document.forms['contactForm']['name'].value;
+        let email = document.forms['contactForm']['email'].value;
+        /*let phone = document.forms['contactForm']['phone'].value;*/
+        let message = document.forms['contactForm']['message'].value;
+  
+        if (name == '' || hasNumber(name)){
+            alert('Name must be filled out and must only contain letters');
+            return false;
+        } /*else if (email == '' && phone == ''){*/
+            else if (email == ''){
+            alert('Email must be filled out');
+            return false;
+        } else if (!(email.includes('@'))){
+            alert('Email does not seem to be valid');
+            return false;
+        }/*else if (isNaN(phone)){
+            alert('Phone number seems to contain letters');
+            return false;
+        }*/ else (message == ''){
+            alert('Message must be filled out');
+            return false;
+        /*} else {
+            // confirm or cancel
+            return confirm('Do you really want to sent the message?')
+        }*/
+    }
+  
+    function hasNumber(myString) {
+        return /\d/.test(myString);
+    }
+</script>
+
+</html>
