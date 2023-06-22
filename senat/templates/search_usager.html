@@ -1,0 +1,191 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;*/
+  
+}
+        .card{
+          
+          border: none;
+          background: #eee;
+        
+        }
+        .search {
+          width: 100%;
+              margin-bottom: auto;
+            margin-top: 20px;
+            height: 50px;
+                background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .search-input {
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            margin-top: 5px;
+            caret-color: transparent;
+            line-height: 20px;
+            transition: width 0.4s linear
+        }
+        
+        .search .search-input {
+            padding: 0 10px;
+            width: 100%;
+            caret-color: #2a5555;
+            font-size: 19px;
+            font-weight: 300;
+            color: black;
+            transition: width 0.4s linear;
+        }
+        
+        
+        .search-icon {
+                height: 34px;
+            width: 34px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: #2a5555;
+            font-size: 10px;
+                bottom: 30px;
+                position: relative;
+                border-radius: 5px;
+        }
+        .search button{
+            border: none;
+            outline: none;
+        }
+        
+        .search-icon:hover{
+        
+          color: #fff !important;
+        }
+        
+        a:link {
+            text-decoration: none
+        }
+        
+        
+        
+        .card-inner {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+            border:none;
+            cursor: pointer;
+            transition: all 2s;
+        }
+        
+        
+        .card-inner:hover{
+        
+           transform: scale(1.1);
+        
+        }
+        
+        .mg-text span{
+        
+          font-size: 12px;
+        
+        }
+        
+        .mg-text{
+        
+          line-height: 14px;
+        }
+    
+</style>
+
+</head>
+<body>
+
+{% if messages %}
+<div class="container mt-4">
+    {% include 'univ/_partials/messages.html' %}
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-center">
+    <a href="{% url 'account:index' %}">
+        <img src="{% static 'landing/assets/img/sceau.png' %}" style="width: 100px; padding-bottom:50px;">
+    </a>
+</div>
+
+
+
+<div class="container mt-4" style="margin-bottom: 50px;">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-9">
+            <div class="card p-4 mt-3" style="border: none; background: #eee;">
+                <h2 class="heading mt-5 text-center">Effectuer la recherche à partir du code, type ou objet d'enregistrement du courrier...</h2>
+                <div class="d-flex justify-content-center px-5">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {% comment %} <div style="width: 700px"> {% endcomment %}
+                            <input type="text" class="form-control" style="width: 700px"  placeholder="Objet..." name="objet" >
+                        {% comment %} </div> {% endcomment %}
+                        <div class="search">
+                            {% comment %} {% csrf_token %} {% endcomment %}
+                            {% comment %} <input type="text" class="search-input" placeholder="Code..." name="code" value="{{code}}" autofocus> {% endcomment %}
+                            <input type="text" class="search-input" placeholder="Code..." name="code" >
+                            <button type="submit" id="searchField" class="search-icon"><i class="fa fa-search"></i></button>
+                        </div>
+                        <select name="types" class="form-control">
+                            <option>LETTRE(L)</option>
+                            <option>REQUETE(R)</option>
+                            <option>LOI(LN)</option>
+                            <option>DECISION(D)</option>
+                            <option>NOTE(N)</option>
+                            <option>PROJET DE LOI(PJL)</option>
+                            <option>PROPOSITION DE LOI(PL)</option>
+                            <option>ARRETE DE BUREAU(AB)</option>
+                        </select>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

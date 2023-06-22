@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -197,7 +198,7 @@ def search(request):
         #     messages.error(request, 'Vous devez renseigner ls champs.')
         # return redirect('senat:search')
 
-        objects = Courrier.objects.filter(code=query, types=querys)
+        objects = Courrier.objects.filter(code=query, types=querys, structure="SENAT")
         if not objects: 
             messages.error(request, "Le code ou le type fourni n'existe pas")
             return redirect('senat:search')
@@ -217,6 +218,45 @@ def search(request):
 
 
 
+# def bureau_univ(request):
+#     type_elt = request.GET.get('types')
+#     code = request.GET.get('code')
+#     courrier = Courrier.objects.filter(
+#         code=code, types=type_elt
+#     )
+#     sg = get_object_or_404(Courrier, code=code, types=type_elt)
+#     form = MentionForm(instance=sg)
+
+#     if request.method == 'POST':
+#         form = MentionForm(request.POST or None, instance=sg)
+#         if form.is_valid():
+#             sg.service_traitement = form.cleaned_data['service_traitement']
+#             sg.mention = form.cleaned_data['mention']                
+            
+#             sg.save()
+#             messages.add_message(request, messages.SUCCESS, (f"Informations du courrier enregistrées avec succès."))
+
+#     return render(request,'univ.html', {"courrier": courrier, "form": form})
+
+
+# def search_univ(request):
+
+#     if request.method == 'POST':
+#         query = request.POST.get('code')
+#         querys = request.POST.get('types')
+        
+
+#         objects = Courrier.objects.filter(code=query, types=querys, structure="UNIVERSITE DE YAOUNDE 1")
+#         if not objects: 
+#             messages.error(request, "Le code ou le type fourni n'existe pas")
+#             return redirect('senat:search_univ')
+#         response = redirect('/bureau_univ/' + f'?code={query}&types={querys}')
+#         return response
+#     else:
+#         return render(request, 'search_univ.html')
+
+
+
 def courrier_attente(request):
     courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
     # if request.method == 'POST':
@@ -226,11 +266,13 @@ def courrier_attente(request):
 
 
 
-def deactivate_person(request, pk):
-    person = get_object_or_404(Courrier, pk=pk)
-    person.is_active = False
-    person.save()
-    return JsonResponse({'message': 'Person deactivated successfully.'})
+def deactivate_record(request, id):
+    record = get_object_or_404(Courrier, pk=id)
+    if request.method == 'POST':
+        record.is_active = False
+        record.save()
+        return HttpResponseRedirect('/')
+    return render(request, 'chef_service.html', {"record": record})
 
 
 
@@ -423,6 +465,10 @@ def captures(request):
 
 
 def scan(request):
+
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
     form = ScanForm(request.POST, request.FILES)
     scan = Scan()
 
@@ -439,6 +485,7 @@ def scan(request):
             return render(request, 'scan.html', {'form': form})
     context = {
         'form': form,
+        'count_courrier': count_courrier,
     }
     return render(request,'scan.html', context)
 
@@ -468,3 +515,48 @@ def download_capture_pdf(request, capture_id):
     buffer.close()
     response.write(pdf_data)
     return response
+
+
+
+
+
+
+
+
+
+
+
+def search_usager(request):
+    
+    if request.method == 'POST':
+        query = request.POST.get('code')
+        querys = request.POST.get('types')
+        queryss = request.POST.get('objet')
+
+
+        response = redirect('/result_usager/' + f'?code={query}&types={querys}&objet={queryss}' or f'?code={query}&types={querys}&objet={queryss}' or f'?objet={queryss}')
+        return response
+    else:
+        return render(request, 'search_usager.html')
+
+
+
+def result_usager(request):
+    #compter le nombre de courrier
+    # courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    # count_courrier = courrier.count()
+
+    type_elt = request.GET.get('types')
+    code = request.GET.get('code')
+    objet = request.GET.get('objet')
+
+
+
+    courrier = Courrier.objects.filter(
+        code=code, types=type_elt
+    ) or Courrier.objects.filter(
+        code=code, types=type_elt, objet=objet
+    )or Courrier.objects.filter(
+        objet=objet
+    )
+    return render(request,'result_usager.html', {"courrier": courrier})

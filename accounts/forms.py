@@ -57,8 +57,10 @@ class SignUpForm(UserCreationForm):
             'password1', 
             'password2', 
             'is_Chef_service', 
+            'is_Chef_univ', 
             'is_Chef_bureau_depart', 
             'is_Chef_bureau_arrive',
             'is_Secretaire_general',
+            'is_Universite',
             'is_Usager'
             )

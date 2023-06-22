@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Enregistrement du courrier - Chef service du courrier </title>
+        <meta charset="UTF-8">
+        <!-- This script got from frontendfreecode.com -->
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+
+
+        <style>
+            .head{
+                margin-top: 150px;
+            }
+            .head1{
+                text-align: center;
+                line-height: 10px;
+            }
+            .head2{
+                width: 300px;
+            }
+            .head3{
+                text-align: center;
+                line-height: 10px;
+            }
+            .objet{
+                text-align: center;
+            }
+            .objet h6{
+                text-decoration: underline;
+            }
+            .objet1{
+                width: 100px;
+            }
+            .objet2{
+                width: 100px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class= "container">
+            <table class="head">
+                <tr>
+                    <td class="head1">
+                        <p>REPUBLIQUE DU CAMEROUN</p>
+                        <p>Paix-Travail-Patrie</p>
+                        <p>--------</p>
+                        <p>SENAT</p>
+                        <p>--------</p>
+                    </td>
+                    <td class="head2">
+    
+                    </td>
+                    <td class="head3">
+                        <p>REPUBLIC OF CAMEROON</p>
+                        <p>Peace-Work-Fatherland</p>
+                        <p>--------</p>
+                        <p>SENATE</p>
+                        <p>--------</p>
+                    </td>
+                </tr>
+            </table>
+            <br><br><br>
+            <table class="obj">
+                <tr>
+                    <td class="objet1">
+                        
+                    </td>
+                    <td class="objet">
+                        <h6>{{ user_courrier.types }} N° 23 / {{ user_courrier.code }} / AB / SEN {% if user_courrier.date %} DU {{ user_courrier.date }} {% else %} DE {{ user_courrier.annee }} {% endif %}</h6><br>
+                        <p>{{ user_courrier.objet }}.
+                        </p>
+                    </td>
+                    <td class="objet2">
+                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

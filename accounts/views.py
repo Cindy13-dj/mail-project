@@ -5,8 +5,13 @@ from django.contrib import messages
 from .models import User
 from tablib import Dataset
 
-from django.conf import settings
+#def error_404(request, exception):
+   #context = {}
+   #return render(request,'admin/404.html', context)
 
+#def error_500(request):
+ #  context = {}
+ #  return render(request,'admin/500.html', context)
 
 
 def index(request):
@@ -59,6 +64,9 @@ def user_login(request):
         if user is not None and user.is_Chef_service:
             login(request, user)
             return redirect('senat:chef_service')
+        elif user is not None and user.is_Chef_univ:
+            login(request, user)
+            return redirect('univ:chef_univ')
         elif user is not None and user.is_Chef_bureau_depart:
             login(request, user)
             return redirect('senat:chef_depart')
@@ -68,6 +76,9 @@ def user_login(request):
         elif user is not None and user.is_Secretaire_general:
             login(request, user)
             return redirect('senat:search')
+        elif user is not None and user.is_Universite:
+            login(request, user)
+            return redirect('univ:search_univ')
         elif user is not None and user.is_Usager:
             login(request, user)
             return redirect('senat:usager')
@@ -76,9 +87,3 @@ def user_login(request):
 
     context = {}
     return render(request, 'login.html', context)
-
-def error_404_view(request, exception):
-   
-    # we add the path to the 404.html file
-    # here. The name of our HTML file is 404.html
-    return render(request, '404.html')

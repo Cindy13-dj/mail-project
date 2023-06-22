@@ -1,0 +1,66 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <!-- This script got from frontendfreecode.com -->
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+        <link rel="stylesheet" href="{% static 'senat/css/remix-icons.css' %}">
+    </head>
+    <body>
+        {% comment %} <h1>Capture</h1> {% endcomment %}<br>
+        <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; flex-wrap: wrap;">
+                <div class="" style="padding-left: 20px">
+                    {% comment %} <label for="name">Nom:</label>
+                    <input type="text" name="name" required> {% endcomment %}
+                    {% comment %} <a class="btn btn-danger" href="{{request.META.HTTP_REFERER|escape}}">Retour</a> {% endcomment %}
+                    <div class="form-group d-flex">
+                        <a class="btn btn-danger" href="{{request.META.HTTP_REFERER|escape}}">Retour</a>
+                        <input style="margin-left: 5px" type="text" name="name" placeholder="Nom..." required class="form-control">
+                    </div>
+                    
+                    <video style="border: 1px solid black" id="video" width="640" height="480" autoplay></video>
+                    <br>
+                    <button style="margin-top: 10px" class="btn btn-secondary" type="button" id="capture">Capturer</button>
+                </div>
+                <div class="" style="padding-left: 20px; padding-top: 54px;">
+                    <canvas style="border: 1px solid black" id="canvas" width="640" height="480"></canvas>
+                    <br>
+                    <input type="hidden" name="image" id="image">
+                    <button style="margin-top: 10px" class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+            </div>
+        </form>
+    </body>
+    <script>
+        var video = document.getElementById('video');
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var captureButton = document.getElementById('capture');
+        var imageInput = document.getElementById('image');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                video.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        captureButton.addEventListener('click', function() {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            var image = canvas.toDataURL('image/png');
+            imageInput.value = image;
+        });
+    </script>
+</html>

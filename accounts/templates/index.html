@@ -1283,7 +1283,7 @@ for the slideshow */
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <nav id="navbar" class="navbar">
+      < <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
@@ -1291,7 +1291,8 @@ for the slideshow */
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'account:user_login' %}">Login</a>
+          <li><a class="nav-link scrollto" href="{% url 'account:user_login' %}" style="font-weight: bold">Sénat</a>
+          <li><a class="nav-link scrollto" href="{% url 'account:user_login' %}" style="font-weight: bold">Université</a>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -1304,7 +1305,14 @@ for the slideshow */
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
       <h1>Bienvenue sur CYBEX_COURRIEL</h1>
       <h2>Plateforme de gestion du courrier administratif au sein de la faculté des sciences de l'université de YAOUNDE 1 et du Sénat du Cameroun.</h2>
-      {% comment %} <a href="#about" class="btn-get-started scrollto">Get Started</a> {% endcomment %}
+      
+        {% comment %} <a href="#about" class="btn-get-started scrollto">Get Started</a> {% endcomment %}
+          <a href="{% url 'senat:search_usager' %}" target="_blank">
+            <button class="btn btn-primary" style="background-color: #0B7474; outline: none; border: none; padding: 10px">Usager Sénat</button>
+            </a>
+            <a href="{% url 'univ:search_usager' %}" style="margin-left: 10px" target="_blank">
+              <button class="btn btn-primary" style="background-color: #ae17aa; outline: none; border: none; padding: 10px">Usager Université</button>
+            </a>
       
     </div>
   </section><!-- End Hero -->

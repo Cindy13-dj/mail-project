@@ -4,18 +4,18 @@ from .views import *
 # from .views import SearchResultsView
 # from .views import SearchResultsList
 
-app_name = "senat"
+app_name = "univ"
 
 urlpatterns = [
-    path('chef_service/', views.chef_service, name='chef_service'),
-    path('chef_depart/', views.chef_depart, name='chef_depart'),
-    path('chef_arrive/', views.chef_arrive, name='chef_arrive'),
+    path('chef_univ/', views.chef_univ, name='chef_univ'),
+    # path('chef_depart/', views.chef_depart, name='chef_depart'),
+    # path('chef_arrive/', views.chef_arrive, name='chef_arrive'),
     # path(r'^(?P<id>\d+)bureau_sg/$', views.bureau_sg, name='bureau_sg'),
-    path('bureau_sg/', views.bureau_sg, name='bureau_sg'),
-    # path('bureau_univ/', views.bureau_univ, name='bureau_univ'),
-    path('usager/', views.usager, name='usager'),
-    path('search/', views.search, name='search'),
-    # path('search_univ/', views.search_univ, name='search_univ'),
+    # path('bureau_sg/', views.bureau_sg, name='bureau_sg'),
+    path('bureau_univ/', views.bureau_univ, name='bureau_univ'),
+    # path('usager/', views.usager, name='usager'),
+    # path('search/', views.search, name='search'),
+    path('search_univ/', views.search_univ, name='search_univ'),
     path('courrier_attente/', views.courrier_attente, name='courrier_attente'),
 
     
@@ -48,7 +48,6 @@ urlpatterns = [
     path('captures/', views.captures, name='captures'),
     path('capture/<int:capture_id>/download/', views.download_capture, name='download_capture'),
     path('capture_pdf/<int:capture_id>/download/', views.download_capture_pdf, name='download_capture_pdf'),
-
 
 
 

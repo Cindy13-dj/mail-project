@@ -1,0 +1,480 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;*/
+  
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2a5555; 
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    /*background-color: #2a5555;*/
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    background-color: #0B7474;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding-left: 350px;
+    transition: all 0.3s;
+}
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
+            </div>
+            {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
+            <div class="text-center">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
+            </div>
+            <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'account:index' %}">
+                        <i class="ri-logout-circle-line"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                {% comment %} <h2 class="mb-4 mt-4">ENREGISTREMENT DU COURRIER</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>>ENREGISTRER UN COURRIER</span>
+                    <h2>>ENREGISTRER UN COURRIER</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        {% include '_partials/messages.html' %}
+                        {% if courrier %}
+                            {% for courriers in courrier %}
+                                <div class="form-group">
+                                    {% comment %} <label for="recepteur">Recepteur</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" transmetteur: {{ courriers.transmetteur | upper }}"  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" recepteur: {{ courriers.recepteur | upper }} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="code">Code</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" code: {{ courriers.code | upper }} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" type: {{ courriers.types | upper }} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" objet: {{ courriers.objet | upper }} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" structure: {{ courriers.structure | upper }} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" date: {% if courriers.date %} {{ courriers.date | upper }} {% else %} / {% endif %} "  disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                    <input type="text" class="form-control" value=" année: {% if courriers.annee %} {{ courriers.annee | upper }} {% else %} / {% endif %} "  disabled="disabled">
+                                </div>
+
+                                {% if courriers.mention and courriers.service_traitement %}
+                                    <div class="form-group">
+                                        {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                        <input type="text" class="form-control" value=" service de traitement: {{ courriers.service_traitement | upper }} "  disabled="disabled">
+                                    </div>
+                                    <div class="form-group">
+                                        {% comment %} <label for="objet">Objet</label> {% endcomment %}
+                                        <input type="text" class="form-control" value=" mention: {{ courriers.mention | upper }} "  disabled="disabled">
+                                    </div>
+                                {% else %}
+
+                                    {% comment %} <div class="form-group"> {% endcomment %}
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        {% comment %} {{ form|crispy }} {% endcomment %}
+                                        <label for="sercice">Service de traitement</label>
+                                        <select name="service_traitement" class="form-control">
+                                            <option>Cabinet du président su Sénat(CABPSEN)</option>
+                                            <option>Sécrétaire Général(SG)</option>
+                                            <option>Sécrétaire Général Adjoint 1(SGA1)</option>
+                                            <option>Sécrétaire Général Adjoint 2(SGA2)</option>
+                                            <option>Conseillé technique(CT)</option>
+                                            <option>Chargé de mission(CM)</option>
+                                            <option>Direction des missions internationales(DMI)</option>
+                                            <option>Direction des servides techniques commun(DSTC)</option>
+                                            <option>Direction du budget de la solde(DBS)</option>
+                                            <option>Direction agence comptable(AC)</option>
+                                            <option>Direction des actions sociales et médicales(DASM)</option>
+                                            <option>Direction de la traduction de l'interpretation(DTI)</option>
+                                            <option>Direction de la coordination des services ratachés et des relations internationales</option>
+                                            <option>Direction de la collectivité territorial décentralisées(DCTD)</option>
+                                            <option>Direction des ressources humaines(DRH)</option>
+                                            <option>Sercice du doyen</option>
+                                            <option>Sercice de la scolarité</option>
+                                            <option>Chef de département</option>
+                                            <option>Sercice des questeurs</option>
+                                        </select>
+                                        <label for="mention">Mention</label>
+                                        <select name="mention" class="form-control">
+                                            <option>ACCORD</option>
+                                            <option>ETUDE ET COMPTE RENDU</option>
+                                            <option>ME VOIR</option>
+                                            <option>M'EN PARLER</option>
+                                            <option>REJET</option>
+                                            <option>AUTRES</option>
+                                        </select>
+                                        <button type="submit" id="" class="btn btn-primary mt-4"> Enregistrer!</button>
+                                    </form> 
+                                    {% comment %} </div> {% endcomment %}
+                                {% endif %}
+            
+                            {% endfor %}
+                        {% comment %} {% else %}
+                            <p> Courrier introuvable... </p> {% endcomment %}
+                        {% endif %} 
+                        <br><br>
+                    </div>
+                    {% comment %} </div> {% endcomment %}
+                    <div class="col-md-5" style="margin-top: 5em;">
+                        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
+                            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
+                            <div class="card-body">
+                                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
+                                    renseignant <b>la date, le service de traitement et la mention du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
+                                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a>
+            
+            <p class="text-center"><span style="font-size: 20px">{{ user.username | upper }}</span> <br> Sécrétariat Général</p>
+            <ul class="list-unstyled components mb-5 mt-5">
+                <li>
+                    <a href="{% url 'account:index' %}">Deconnexion</a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:search' %}">Recherche</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </nav>
+    
+    <div id="content" class="p-4 p-md-5 col-md-6">
+        
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+        <h2 class="mb-4 mt-4">ENREGISTREMENT DU COURRIER</h2>
+        {% include '_partials/messages.html' %}
+
+        {% if courrier %} 
+    
+            {% for courriers in courrier %}
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" transmetteur: {{ courriers.transmetteur | upper }}"  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" recepteur: {{ courriers.recepteur | upper }} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" code: {{ courriers.code | upper }} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" type: {{ courriers.types | upper }} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" objet: {{ courriers.objet | upper }} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" structure: {{ courriers.structure | upper }} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" date: {% if courriers.date %} {{ courriers.date | upper }} {% else %} / {% endif %} "  disabled="disabled">
+                </div>
+                <div class="form-group">
+                    
+                    <input type="text" class="form-control" value=" année: {% if courriers.annee %} {{ courriers.annee | upper }} {% else %} / {% endif %} "  disabled="disabled">
+                </div>
+
+                {% if courriers.mention and courriers.service_traitement %}
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" value=" service de traitement: {{ courriers.service_traitement | upper }} "  disabled="disabled">
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" value=" mention: {{ courriers.mention | upper }} "  disabled="disabled">
+                    </div>
+                {% else %}
+
+                
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        
+                        <label for="sercice">Service de traitement</label>
+                        <select name="service_traitement" class="form-control">
+                            <option>Direction de la coordination des services ratachés et des relations internationales</option>
+                            <option>Direction de l agence comptable du service de la comptabilité matière et du bureau de liaison à l etrnager</option>
+                            <option>Direction de la legislation, du contrôle parlementaire et des services linguistique</option>
+                            <option>Direction du budget et de la solde(DBS)</option>
+                            <option>Direction des relations(DRH)</option>
+                            <option>Direction des actions sociales et médicales(DASM)</option>
+                            <option>Direction des servides techniques commun(DSTC)</option>
+                            <option>Direction de la documentation, des archives et de la recherche parlementaire(DDARP)</option>
+                            <option>Inspecteurs généraux(IG)</option>
+                            <option>Direction des relations(DRH)</option>
+                            <option>Sécrétaire particulier(SP)</option>
+                            <option>Conseillé technique(CT)</option>
+                            <option>Chargé de mission(CM)</option>
+                            <option>Chargé d études(CE)</option>
+                            <option>Chargé d études assistante(CE)</option>
+                        </select>
+                        <label for="mention">Mention</label>
+                        <select name="mention" class="form-control">
+                            <option>ACCORD</option>
+                            <option>ETUDE ET COMPTE RENDU</option>
+                            <option>ME VOIR</option>
+                            <option>M'EN PARLER</option>
+                            <option>REJET</option>
+                            <option>AUTRES</option>
+                        </select>
+                        <button type="submit" id="" class="btn btn-primary mt-4"> Enregistrer!</button>
+                    </form> 
+                
+                {% endif %}
+            
+            {% endfor %}
+        {% else %}
+            <p> Courrier introuvable... </p>
+        {% endif %}
+
+        
+    </div>
+    <div class="" style="margin-top: 15em;">
+        <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
+            <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
+            <div class="card-body">
+                
+                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
+                    renseignant <b>la date, le service de traitement et la mention du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
+                    sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
+                </p>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+{% comment %} <script>
+(function ($) {
+    "use strict";
+    var fullHeight = function () {
+        $(".js-fullheight").css("height", $(window).height());
+        $(window).resize(function () {
+            $(".js-fullheight").css("height", $(window).height());
+        });
+    };
+    fullHeight();
+    $("#sidebarCollapse").on("click", function () {
+        $("#sidebar").toggleClass("active");
+    });
+})(jQuery);
+</script>
+<script>
+    
+    
+</script> {% endcomment %}
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Enregistrement du courrier - Chef service du courrier </title>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="{% static 'landing/assets/img/favicon.png' %}">
+<script src=“https://code.jquery.com/jquery-3.5.1.min.js” integrity=“sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj” crossorigin=“anonymous”></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+    font-family: 'Quicksand', sans-serif;
+    /*font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;*/
+  
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #6A4E77; 
+    overflow-x: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    /*background-color: #6A4E77;*/
+    color: #fff;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    /*border-bottom: 1px solid #47748b;*/
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    background-color:  #ae17aa;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+#content {
+    width: 100%;
+    padding-left: 350px;
+    transition: all 0.3s;
+}
+/*#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}*/
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+.section-title {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+    color: #191919;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section-title span {
+    position: absolute;
+    top: 30px;
+    color: #f4f4f4;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 0;
+  }
+  
+  .section-title p {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @media (max-width: 575px) {
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  
+    .section-title span {
+      font-size: 38px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header text-center">
+                {% comment %} <h5>Cybex Courrier</h5> {% endcomment %}
+                <img src="{% static 'landing/assets/img/cybex-logo.png' %}" class="" style="width: 250px;">
+            </div>
+            {% comment %} <a href="#" class="img logo rounded-circle mb-3" style="background-image: url(http://frontendfreecode.com/img/user.jpg);"></a> {% endcomment %}
+            <div class="text-center">
+                <img src="{% static 'landing/assets/img/about.jpg' %}" class="img logo rounded-circle mb-3 mt-2" style="width: 100px; height: 100px;">
+            </div>
+            <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'account:index' %}">
+                        <i class="ri-logout-circle-line"></i>
+                        Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:chef_univ' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:search_chef' %}">
+                        <i class="fas fa-tasks mr-2"></i>
+                        Recherche d'un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:list_courrier' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Listing des Courriers
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:envoi_email' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Email
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:scan' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Scanner un Courrier
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'univ:captures' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Imprimer un Courrier
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                {% comment %} <h2 class="mb-4 mt-4">LISTE DE COURRIERS EN ATTENTE</h2> {% endcomment %}
+                <div class="section-title">
+                    <span>LISTE DE COURRIERS EN ATTENTE</span>
+                    <h2>LISTE DE COURRIERS EN ATTENTE</h2>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        {% for courriers in courrier %}
+                            <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                                <div class="card" style="border-color:; box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);">
+                                    <div class="card-body" style="border-top: 5px solid #6A4E77; border-radius: 3px;">
+                                        <p style="font-size: 20px; font-weight: bold;">
+                                            Code: {{ courriers.code }}
+                                        <p>
+                                        <a style="color: black" href=" {% url 'univ:courrier_attente_detail' courriers.id %} ">
+                                            <button type="button" class="btn btn-primary" style="background-color: green; border: none">Détail</button>
+                                        </a>
+                                        {% comment %} {% for records in record %} {% endcomment %}
+                                            {% comment %} <form method=“post” action="{% url 'senat:deactivate_record' courriers.pk %}"> {% endcomment %}
+                                                <button type="button" class="btn btn-primary" style="background-color: red; border: none" data-toggle="modal" data-target="#exampleModal">Terminer</button>
+                                            {% comment %} </form> {% endcomment %}
+                                        {% comment %} {% endfor %} {% endcomment %}
+                                        {% comment %} <form method="POST">
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">COURRIER</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    En cliquant sur OUI vous confirmez avoir traité le courrier
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" style="background-color: red; border: none" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                        {% if record.is_active %}
+                                                            <button type="button" data-record-id="{{ record.pk }}" id="deactivatePersonBtn" style="background-color: green; border: none" class="btn btn-primary deactivate-btn" >OUI</button>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </form> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% comment %} 
+<script>
+    (document).ready(function() {
+        ('.record-link').click(function(e) {
+            e.preventDefault();
+            var url = (this).attr('href');
+
+            .get(url, function(data) {
+                ('#modal-content').html(data);
+                ('#record-detail-modal').modal('show');
+            });
+        });
+
+        ('.deactivate-btn').click(function() {
+            (this).data('record-id');
+            var url = '{% url 'senat:deactivate_record' pk=' + recordId + ' %}';
+
+            $.post(url, function(data) {
+                if (data.url) {
+                    window.location.href = data.url;
+                }
+            });
+        });
+    });
+</script> {% endcomment %}
+
+</body>
+</html>
