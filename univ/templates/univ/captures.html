@@ -93,6 +93,9 @@ body {
     padding-left: 300px;
     transition: all 0.3s;
 }
+.active{
+    background-color: #ae17aa;
+}
 
 
 
@@ -166,7 +169,7 @@ body {
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
@@ -208,7 +211,7 @@ body {
                         Scanner un Courrier
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="{% url 'univ:captures' %}">
                         <i class="fas fa-cog mr-2"></i>
                         Imprimer un Courrier

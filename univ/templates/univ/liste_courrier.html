@@ -93,7 +93,9 @@ body {
     padding-left: 300px;
     transition: all 0.3s;
 }
-
+.active{
+    background-color: #ae17aa;
+}
 
 
 
@@ -166,7 +168,7 @@ body {
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
@@ -188,6 +190,12 @@ body {
                     <a href="{% url 'univ:search_chef' %}">
                         <i class="fas fa-tasks mr-2"></i>
                         Recherche d'un Courrier
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'univ:list_courrier' %}">
+                        <i class="fas fa-cog mr-2"></i>
+                        Listing des Courriers
                     </a>
                 </li>
                 <li>

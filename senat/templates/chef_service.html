@@ -101,6 +101,9 @@ body {
     background-color: red;
     display: none;
 }
+.active{
+    background-color: #0B7474;
+}
 
 
 /*--------------------------------------------------------------
@@ -170,10 +173,16 @@ body {
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'senat:chef_service' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
                     </a>
                 </li>
                 <li>
@@ -250,7 +259,7 @@ body {
                         <div class="card text-white" style="margin-right:3rem; border-color: #2a5555">
                             <div class="card-header" style="background-color: #2a5555; font-weight: bold; font-size: 20px">NOTICE</div>
                             <div class="card-body">
-                                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de vous <b>déconnecter</b>, <b>d'enregistrer un courrier</b> en 
+                                <p class="card-text"style="color: #111; font-size: 15px">Une fois sur cette page vous avez la possibilité de choisir <b>une action en cliquant sur un élément du menu latéral</b>, <b>d'enregistrer un courrier</b> en 
                                     renseignant <b>le transmetteur, le recepteur, le code, la date, l'objet du courrier</b> qui sont tous des champs <b>obligatoires</b> et en cliquant
                                     sur <b>enregistrer</b>, vous allez recevoir un message de succès dans le cas ou les champs sont bien remplis et votre mission est terminé.
                                 </p>

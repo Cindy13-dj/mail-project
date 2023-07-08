@@ -12,10 +12,10 @@ urlpatterns = [
     path('chef_arrive/', views.chef_arrive, name='chef_arrive'),
     # path(r'^(?P<id>\d+)bureau_sg/$', views.bureau_sg, name='bureau_sg'),
     path('bureau_sg/', views.bureau_sg, name='bureau_sg'),
-    path('bureau_univ/', views.bureau_univ, name='bureau_univ'),
+    # path('bureau_univ/', views.bureau_univ, name='bureau_univ'),
     path('usager/', views.usager, name='usager'),
     path('search/', views.search, name='search'),
-    path('search_univ/', views.search_univ, name='search_univ'),
+    # path('search_univ/', views.search_univ, name='search_univ'),
     path('courrier_attente/', views.courrier_attente, name='courrier_attente'),
 
     
@@ -48,6 +48,10 @@ urlpatterns = [
     path('captures/', views.captures, name='captures'),
     path('capture/<int:capture_id>/download/', views.download_capture, name='download_capture'),
     path('capture_pdf/<int:capture_id>/download/', views.download_capture_pdf, name='download_capture_pdf'),
+
+
+
+
 
     path('search_usager/', views.search_usager, name='search_usager'),
     path('result_usager/', views.result_usager, name='result_usager'),

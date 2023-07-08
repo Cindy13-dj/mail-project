@@ -218,42 +218,42 @@ def search(request):
 
 
 
-def bureau_univ(request):
-    type_elt = request.GET.get('types')
-    code = request.GET.get('code')
-    courrier = Courrier.objects.filter(
-        code=code, types=type_elt
-    )
-    sg = get_object_or_404(Courrier, code=code, types=type_elt)
-    form = MentionForm(instance=sg)
+# def bureau_univ(request):
+#     type_elt = request.GET.get('types')
+#     code = request.GET.get('code')
+#     courrier = Courrier.objects.filter(
+#         code=code, types=type_elt
+#     )
+#     sg = get_object_or_404(Courrier, code=code, types=type_elt)
+#     form = MentionForm(instance=sg)
 
-    if request.method == 'POST':
-        form = MentionForm(request.POST or None, instance=sg)
-        if form.is_valid():
-            sg.service_traitement = form.cleaned_data['service_traitement']
-            sg.mention = form.cleaned_data['mention']                
+#     if request.method == 'POST':
+#         form = MentionForm(request.POST or None, instance=sg)
+#         if form.is_valid():
+#             sg.service_traitement = form.cleaned_data['service_traitement']
+#             sg.mention = form.cleaned_data['mention']                
             
-            sg.save()
-            messages.add_message(request, messages.SUCCESS, (f"Informations du courrier enregistrées avec succès."))
+#             sg.save()
+#             messages.add_message(request, messages.SUCCESS, (f"Informations du courrier enregistrées avec succès."))
 
-    return render(request,'univ.html', {"courrier": courrier, "form": form})
+#     return render(request,'univ.html', {"courrier": courrier, "form": form})
 
 
-def search_univ(request):
+# def search_univ(request):
 
-    if request.method == 'POST':
-        query = request.POST.get('code')
-        querys = request.POST.get('types')
+#     if request.method == 'POST':
+#         query = request.POST.get('code')
+#         querys = request.POST.get('types')
         
 
-        objects = Courrier.objects.filter(code=query, types=querys, structure="UNIVERSITE DE YAOUNDE 1")
-        if not objects: 
-            messages.error(request, "Le code ou le type fourni n'existe pas")
-            return redirect('senat:search_univ')
-        response = redirect('/bureau_univ/' + f'?code={query}&types={querys}')
-        return response
-    else:
-        return render(request, 'search_univ.html')
+#         objects = Courrier.objects.filter(code=query, types=querys, structure="UNIVERSITE DE YAOUNDE 1")
+#         if not objects: 
+#             messages.error(request, "Le code ou le type fourni n'existe pas")
+#             return redirect('senat:search_univ')
+#         response = redirect('/bureau_univ/' + f'?code={query}&types={querys}')
+#         return response
+#     else:
+#         return render(request, 'search_univ.html')
 
 
 
@@ -262,7 +262,11 @@ def courrier_attente(request):
     # if request.method == 'POST':
     #     request.is_active = False
     #     request.save()
-    return render(request, 'courrier_attente.html', {"courrier": courrier})
+    #compter le nombre de courrier
+    courrier = Courrier.objects.filter(mention="ETUDE ET COMPTE RENDU", is_active=True)
+    count_courrier = courrier.count()
+
+    return render(request, 'courrier_attente.html', {"courrier": courrier, "count_courrier": count_courrier})
 
 
 
@@ -390,7 +394,7 @@ def envoi_email(request):
             'email':email,
             # 'phone':phone,
             'message':message,
-            #'attachment':MIMEMultipart(),
+            'attachment':MIMEMultipart(),
         }
         recipient_list = email
         # message = '''
@@ -515,10 +519,6 @@ def download_capture_pdf(request, capture_id):
     buffer.close()
     response.write(pdf_data)
     return response
-
-
-
-
 
 
 

@@ -203,7 +203,7 @@ textarea{
 .btn{
 	width: 40%;
 	padding: 0.5rem 1rem;
-	background-color: #25a888;
+	background-color: #ae17aa;
     border-radius: 3px;
 	color: #fff;
 	font-size: 1.1rem;
@@ -228,6 +228,9 @@ textarea{
 	.left{
 		height: 200px;
 	}
+}
+.active{
+    background-color: #ae17aa;
 }
 
 
@@ -300,7 +303,7 @@ textarea{
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
@@ -330,7 +333,7 @@ textarea{
                         Listing des Courriers
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#">
                         <i class="fas fa-cog mr-2"></i>
                         Email

@@ -31,9 +31,9 @@ EMETTEUR = (
     ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
     ('Direction de la collectivité territorial décentralisées(DCTD)', 'Direction de la collectivité territorial décentralisées(DCTD)'),
     ('Direction des ressources humaines(DRH)', 'Direction des ressources humaines(DRH)'),
-    ('Sercice du doyen', 'Sercice du doyen'),
-    ('Sercice de la scolarité', 'Sercice de la scolarité'),
-    ('Chef de département', 'Chef de département'),
+    # ('Sercice du doyen', 'Sercice du doyen'),
+    # ('Sercice de la scolarité', 'Sercice de la scolarité'),
+    # ('Chef de département', 'Chef de département'),
     ('Sercice des questeurs', 'Sercice des questeurs'),
     ('AUTRES...', 'AUTRES...'),
 )
@@ -54,22 +54,22 @@ SERVICE_TRAITEMENT = (
     ('Direction de la coordination des services ratachés et des relations internationales', 'Direction de la coordination des services ratachés et des relations internationales'),
     ('Direction de la collectivité territorial décentralisées(DCTD)', 'Direction de la collectivité territorial décentralisées(DCTD)'),
     ('Direction des ressources humaines(DRH)', 'Direction des ressources humaines(DRH)'),
-    ('Sercice du doyen', 'Sercice du doyen'),
-    ('Sercice de la scolarité', 'Sercice de la scolarité'),
-    ('Chef de département', 'Chef de département'),
+    # ('Sercice du doyen', 'Sercice du doyen'),
+    # ('Sercice de la scolarité', 'Sercice de la scolarité'),
+    # ('Chef de département', 'Chef de département'),
     ('Sercice des questeurs', 'Sercice des questeurs'),
 )
 
 RECEPTEUR = (
     ('CABINET DU PRESIDENT DU SENAT', 'CABINET DU PRESIDENT DU SENAT'),
     ('SECRETARIAT GENERAL', 'SECRETARIAT GENERAL'),
-    ('DECANAT', 'DECANAT'),
+    # ('DECANAT', 'DECANAT'),
     ('Sercice des questeurs', 'Sercice des questeurs'),
 )
 
 STRUCTURE = (
     ('SENAT', 'SENAT'),
-    ('UNIVERSITE DE YAOUNDE 1', 'UNIVERSITE DE YAOUNDE 1'),
+    # ('UNIVERSITE DE YAOUNDE 1', 'UNIVERSITE DE YAOUNDE 1'),
 )
 
 MENTION = (
@@ -86,7 +86,7 @@ class Courrier(models.Model):
     recepteur = models.CharField(max_length=100, choices=RECEPTEUR)
     types = models.CharField(max_length=100, choices=TYPES_COURRIERS)
     structure = models.CharField(max_length=100, choices=STRUCTURE, null=True, blank=True)
-    code = models.CharField(max_length=100, null=False, blank=False)
+    code = models.CharField(max_length=100, null=False, blank=False, unique=True)
     annee = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateField(blank=True, null=True, default=date.today)
     objet = models.CharField(max_length=10000, null=False, blank=False)

@@ -103,6 +103,10 @@ body {
 .help-block strong{
     display: none;
 }
+.active{
+    background-color: #0B7474;
+}
+
 
 
 
@@ -175,10 +179,16 @@ body {
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef du Service Courrier</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'senat:chef_service' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
                     </a>
                 </li>
                 <li>
@@ -205,7 +215,7 @@ body {
                         Email
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="{% url 'senat:scan' %}">
                         <i class="fas fa-cog mr-2"></i>
                         Scanner un Courrier

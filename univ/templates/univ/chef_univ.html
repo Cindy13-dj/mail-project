@@ -101,6 +101,9 @@ body {
     background-color: red;
     display: none;
 }
+.active{
+    background-color: #ae17aa;
+}
 
 
 /*--------------------------------------------------------------
@@ -170,10 +173,16 @@ body {
             </div>
             <p class="text-center" style="color: #fff"><span style="font-size: 20px; color: #fff">{{ user.username | upper }}</span> <br> Chef Université</p>
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="{% url 'account:index' %}">
                         <i class="ri-logout-circle-line"></i>
                         Deconnexion
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{% url 'univ:chef_univ' %}">
+                        <i class="fas fa-user mr-2"></i>
+                        Enregistrer un Courrier
                     </a>
                 </li>
                 <li>

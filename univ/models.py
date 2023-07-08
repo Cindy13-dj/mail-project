@@ -86,7 +86,7 @@ class Courrier_Univ(models.Model):
     recepteur = models.CharField(max_length=100, choices=RECEPTEUR)
     types = models.CharField(max_length=100, choices=TYPES_COURRIERS)
     structure = models.CharField(max_length=100, choices=STRUCTURE, null=True, blank=True)
-    code = models.CharField(max_length=100, null=False, blank=False)
+    code = models.CharField(max_length=100, null=False, blank=False, unique=True)
     annee = models.CharField(max_length=100, null=True, blank=True)
     date = models.DateField(blank=True, null=True, default=date.today)
     objet = models.CharField(max_length=10000, null=False, blank=False)
